@@ -30,6 +30,14 @@ def account_login(request):
         access_token = login_json["access_token"]
         request.session['access_token'] = access_token
         request.session['message'] = 'Đăng nhập thành công!'
+        tag = requests.get(get_tags_url).json()
         return render(request, 'dashboards/index.html')
     else:
         return redirect('/account/login/')
+
+
+def dashboards(request):
+    tag = requests.get(get_tags_url).json()
+    print("Ssssssssssssssssss")
+    print(tag)
+    return render(request, 'dashboards/index.html',  {'tag': tag})
