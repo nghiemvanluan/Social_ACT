@@ -10,6 +10,21 @@
     <link href="{% static 'libs/swiper/swiper-bundle.min.css'%}" rel="stylesheet" type="text/css" />
 
     <link href="{% static 'css/dashboards.css'%}" rel="stylesheet" type="text/css" />
+        <link
+      href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/brands.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/solid.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
 {% endblock extra_css %}
 
 {% block content %}
@@ -39,7 +54,7 @@
                                                         name="tag_id_check"
                                                         class="form-select"
                                                         aria-label="Default select example"
-                                                        style="height: 43px"
+                                                        style="height: 40px;"
                                                         id="validationCustom04"
                                                         required
                                                     >
@@ -66,20 +81,29 @@
                                         <div class="card card-animate">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Giới Tính</p>
+                                                    <div class="row">
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Giới Tính</p>
+                                                        </div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-soft-primary rounded fs-3" style="margin-left:270px;width:210%;margin-top:-25px;">
+                                                                <i class="fa-solid fa-person-cane" style="color: #1f514e;"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <h5 class="text-success fs-14 mb-0">
-                                                            {% comment %} <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +16.24 % {% endcomment %}
+                                                            {% comment %} <i class="ri-arrow-right-up-line fs-13 align-middle"></i> % {% endcomment %}
                                                         </h5>
                                                     </div>
+
                                                 </div>
+
                                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                                     <div>
                                                         {% with report=report_detail %}
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Nam: <span class="counter-value" data-target="{{report.genders.0.value}}">0</span> người</h4>
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Nữ: <span class="counter-value" data-target="{{report.genders.1.value}}">0</span> người</h4>
+                                                            <h4 class="fs-14 fw-bold ff-secondary mb-3">Nam: <span class="counter-value" data-target="{{report.genders.0.value}}">0</span> người</h4>
+                                                            <h4 class="fs-14 fw-bold ff-secondary mb-3">Nữ: <span class="counter-value" data-target="{{report.genders.1.value}}">0</span> người</h4>
                                                         {% endwith %}
                                                     </div>
                                                 </div>
@@ -92,8 +116,15 @@
                                         <div class="card card-animate">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Tình trạng hôn nhân</p>
+                                                    <div class="row">
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Tình trạng hôn nhân</p>
+                                                        </div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-soft-info rounded fs-3" style="margin-left:270px;width:210%;margin-top:-25px;">
+                                                                <i class='bx bxs-heart-circle' style="color:red"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <h5 class="text-danger fs-14 mb-0">
@@ -104,8 +135,8 @@
                                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                                     <div>
                                                         {% with report=report_detail %}
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Đã kết hôn: <span class="counter-value" data-target="{{report.marital_status.0.value}}">0</span> người</h4>
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Chưa kết hôn: <span class="counter-value" data-target="{{report.marital_status.1.value}}">0</span> người</h4>
+                                                            <h4 class="fs-14 fw-bold ff-secondary mb-3">Đã kết hôn: <span class="counter-value" data-target="{{report.marital_status.0.value}}">0</span> người</h4>
+                                                            <h4 class="fs-14 fw-bold ff-secondary mb-3">Chưa kết hôn: <span class="counter-value" data-target="{{report.marital_status.1.value}}">0</span> người</h4>
                                                         {% endwith %}
                                                     </div>
                                                 </div>
@@ -118,8 +149,15 @@
                                         <div class="card card-animate">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Học vấn</p>
+                                                    <div class="row">
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Học vấn</p>
+                                                        </div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-soft-primary rounded fs-3" style="margin-left:270px;width:210%;margin-top:-25px;">
+                                                                <i class="fa-solid fa-book-bookmark" style="color:#135BFF"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <h5 class="text-success fs-14 mb-0">
@@ -128,12 +166,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    <div>
+                                                    <div style="margin-top:-20px">
                                                     {% with report=report_detail %}
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Trung học: <span class="counter-value" data-target="{{report.educational_attainment.0.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Cử nhân: <span class="counter-value" data-target="{{report.educational_attainment.1.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Sau đại học: <span class="counter-value" data-target="{{report.educational_attainment.2.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Chuyên gia: <span class="counter-value" data-target="{{report.educational_attainment.3.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Trung học: <span class="counter-value" data-target="{{report.educational_attainment.0.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Cử nhân: <span class="counter-value" data-target="{{report.educational_attainment.1.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Sau đại học: <span class="counter-value" data-target="{{report.educational_attainment.2.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Chuyên gia: <span class="counter-value" data-target="{{report.educational_attainment.3.value}}">0</span> người</h4>
                                                     {% endwith %}
                                                     </div>
                                                 </div>
@@ -146,8 +184,15 @@
                                         <div class="card card-animate">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Nghề Nghiệp</p>
+                                                    <div class="row">
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Nghề nghiệp</p>
+                                                        </div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-soft-primary rounded fs-3" style="margin-left:270px;width:210%;margin-top:-25px;">
+                                                                <i class="bx bx-user-circle text-primary"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         {% comment %} <h5 class="text-muted fs-14 mb-0">
@@ -156,13 +201,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    <div>
+                                                    <div style="margin-top:-40px;margin-bottom:-20px">
                                                     {% with report=report_detail %}
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">HS-SV: <span class="counter-value" data-target="{{report.jod.0.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Thực tập sinh: <span class="counter-value" data-target="{{report.jod.1.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Mới làm việc: <span class="counter-value" data-target="{{report.jod.2.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Quản lý: <span class="counter-value" data-target="{{report.jod.3.value}}">0</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Điều hành: <span class="counter-value" data-target="{{report.jod.4.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">HS-SV: <span class="counter-value" data-target="{{report.jod.0.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Thực tập sinh: <span class="counter-value" data-target="{{report.jod.1.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Mới làm việc: <span class="counter-value" data-target="{{report.jod.2.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Quản lý: <span class="counter-value" data-target="{{report.jod.3.value}}">0</span> người</h4>
+                                                        <h4 class="fs-14 fw-bold ff-secondary mb-3">Điều hành: <span class="counter-value" data-target="{{report.jod.4.value}}">0</span> người</h4>
                                                     {% endwith %}
                                                     </div>
                                                 </div>
