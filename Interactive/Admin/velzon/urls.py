@@ -16,34 +16,36 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
-from .views import MyPasswordChangeView, MyPasswordSetView, account_login
+from .views import LoginPage
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # Dashboard
-    path('', include('dashboards.urls')),
-    # Apps
-    path('apps/', include('apps.urls')),
-    # Layouts
-    path('layouts/', include('layouts.urls')),
-    # Components
-    path('components/', include('components.urls')),
-    # Pages
-    path('pages/', include('pages.urls')),
-    path(
-        "account/password/change/",
-        login_required(MyPasswordChangeView.as_view()),
-        name="account_change_password",
-    ),
-    path(
-        "account/password/set/",
-        login_required(MyPasswordSetView.as_view()),
-        name="account_set_password",
-    ),
+    # path('admin/', admin.site.urls),
+    # # Dashboard
+    path('', LoginPage, name="login"),
+    # # Apps
+    path('source/', include('apps.urls')),
+    path('dashboards/', include('dashboards.urls')),
+    path('clients/', include('apps.urls')),
+    # # Layouts
+    # path('layouts/', include('layouts.urls')),
+    # # Components
+    # path('components/', include('components.urls')),
+    # # Pages
+    # path('pages/', include('pages.urls')),
+    # path(
+    #     "account/password/change/",
+    #     login_required(MyPasswordChangeView.as_view()),
+    #     name="account_change_password",
+    # ),
+    # path(
+    #     "account/password/set/",
+    #     login_required(MyPasswordSetView.as_view()),
+    #     name="account_set_password",
+    # ),
     # All Auth
-    path('account/', include('allauth.urls')),
+    # path('account/', include('allauth.urls')),
 
 
     # xử lý login
-    path('account_login/',
-         account_login, name='account_login'),
+    # path('account_login/',
+    #      account_login, name='account_login'),
 ]

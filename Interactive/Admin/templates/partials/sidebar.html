@@ -38,8 +38,7 @@
         <li class="nav-item">
           <a
             class="nav-link menu-link"
-            href="#sidebarDashboards"
-            data-bs-toggle="collapse"
+            href="/dashboards/"
             role="button"
             aria-expanded="false"
             aria-controls="sidebarDashboards"
@@ -47,7 +46,7 @@
             <i class="ri-dashboard-2-line"></i>
             <span data-key="t-dashboards">Dashboards</span>
           </a>
-          <div class="collapse menu-dropdown" id="sidebarDashboards">
+          {% comment %} <div class="collapse menu-dropdown" id="sidebarDashboards">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a href="#" class="nav-link" data-key="t-analytics">
@@ -71,449 +70,19 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </div> {% endcomment %}
         </li>
         <!-- end Dashboard Menu -->
         <li class="nav-item">
           <a
             class="nav-link menu-link"
-            href="#sidebarApps"
-            data-bs-toggle="collapse"
+            href="/source/"
             role="button"
             aria-expanded="false"
             aria-controls="sidebarApps"
           >
-            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Apps</span>
+            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Nguồn</span>
           </a>
-          <div class="collapse menu-dropdown" id="sidebarApps">
-            <ul class="nav nav-sm flex-column">
-              <li class="nav-item">
-                <a
-                  href="{% url 'apps:calendar'%}"
-                  class="nav-link"
-                  data-key="t-calendar"
-                >
-                  Calendar
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="{% url 'apps:chat'%}"
-                  class="nav-link"
-                  data-key="t-chat"
-                >
-                  Chat
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="{% url 'apps:mailbox'%}"
-                  class="nav-link"
-                  data-key="t-mailbox"
-                >
-                  Mailbox
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarEcommerce"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarEcommerce"
-                  data-key="t-ecommerce"
-                >
-                  Ecommerce
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarEcommerce">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.products' %}"
-                        class="nav-link"
-                        data-key="t-products"
-                      >
-                        Products
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.product_details' %}"
-                        class="nav-link"
-                        data-key="t-product-Details"
-                      >
-                        Product Details
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.add_product' %}"
-                        class="nav-link"
-                        data-key="t-create-product"
-                      >
-                        Create Product
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.orders' %}"
-                        class="nav-link"
-                        data-key="t-orders"
-                      >
-                        Orders
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.order_details' %}"
-                        class="nav-link"
-                        data-key="t-order-details"
-                      >
-                        Order Details
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.customers' %}"
-                        class="nav-link"
-                        data-key="t-customers"
-                      >
-                        Customers
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.cart' %}"
-                        class="nav-link"
-                        data-key="t-shopping-cart"
-                      >
-                        Shopping Cart
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.checkout' %}"
-                        class="nav-link"
-                        data-key="t-checkout"
-                      >
-                        Checkout
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.sellers' %}"
-                        class="nav-link"
-                        data-key="t-sellers"
-                      >
-                        Sellers
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:ecommerce.seller_details' %}"
-                        class="nav-link"
-                        data-key="t-sellers-details"
-                      >
-                        Seller Details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarProjects"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarProjects"
-                  data-key="t-projects"
-                >
-                  Projects
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarProjects">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:projects.list' %}"
-                        class="nav-link"
-                        data-key="t-list"
-                      >
-                        List
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:projects.overview' %}"
-                        class="nav-link"
-                        data-key="t-overview"
-                      >
-                        Overview
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:projects.create' %}"
-                        class="nav-link"
-                        data-key="t-create-project"
-                      >
-                        Create Project
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarTasks"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarTasks"
-                  data-key="t-tasks"
-                >
-                  Tasks
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarTasks">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:tasks.kanban' %}"
-                        class="nav-link"
-                        data-key="t-kanbanboard"
-                      >
-                        Kanban Board
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:tasks.list' %}"
-                        class="nav-link"
-                        data-key="t-list-view"
-                      >
-                        List View
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:tasks.details' %}"
-                        class="nav-link"
-                        data-key="t-task-details"
-                      >
-                        Task Details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarCRM"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarCRM"
-                  data-key="t-crm"
-                >
-                  CRM
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarCRM">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crm.contacts' %}"
-                        class="nav-link"
-                        data-key="t-contacts"
-                      >
-                        Contacts
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crm.companies' %}"
-                        class="nav-link"
-                        data-key="t-companies"
-                      >
-                        Companies
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crm.deals' %}"
-                        class="nav-link"
-                        data-key="t-deals"
-                      >
-                        Deals
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crm.leads' %}"
-                        class="nav-link"
-                        data-key="t-leads"
-                      >
-                        Leads
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarCrypto"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarCrypto"
-                  data-key="t-crypto"
-                >
-                  Crypto
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarCrypto">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.transactions' %}"
-                        class="nav-link"
-                        data-key="t-transactions"
-                      >
-                        Transactions
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.buy_sell' %}"
-                        class="nav-link"
-                        data-key="t-buy-sell"
-                      >
-                        Buy & Sell
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.orders' %}"
-                        class="nav-link"
-                        data-key="t-orders"
-                      >
-                        Orders
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.wallet' %}"
-                        class="nav-link"
-                        data-key="t-my-wallet"
-                      >
-                        My Wallet
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.ico' %}"
-                        class="nav-link"
-                        data-key="t-ico-list"
-                      >
-                        ICO List
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:crypto.kyc' %}"
-                        class="nav-link"
-                        data-key="t-kyc-application"
-                      >
-                        KYC Application
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarInvoices"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarInvoices"
-                  data-key="t-invoices"
-                >
-                  Invoices
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarInvoices">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:invoices.list' %}"
-                        class="nav-link"
-                        data-key="t-list-view"
-                      >
-                        List View
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:invoices.details' %}"
-                        class="nav-link"
-                        data-key="t-details"
-                      >
-                        Details
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:invoices.create' %}"
-                        class="nav-link"
-                        data-key="t-create-invoice"
-                      >
-                        Create Invoice
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#sidebarTickets"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarTickets"
-                  data-key="t-supprt-tickets"
-                >
-                  Support Tickets
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarTickets">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:tickets.list' %}"
-                        class="nav-link"
-                        data-key="t-list-view"
-                      >
-                        List View
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="{% url 'apps:tickets.details' %}"
-                        class="nav-link"
-                        data-key="t-ticket-details"
-                      >
-                        Ticket Details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
         </li>
 
         <li class="nav-item">
@@ -526,53 +95,24 @@
             aria-controls="sidebarLayouts"
           >
             <i class="ri-layout-3-line"></i>
-            <span data-key="t-layouts">Layouts</span>
+            <span data-key="t-layouts">Khách tiềm năng</span>
           </a>
           <div class="collapse menu-dropdown" id="sidebarLayouts">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'layouts:horizontal'%}"
-                  target="_blank"
+                  href="/clients/"
                   class="nav-link"
                   data-key="t-horizontal"
-                  >Horizontal</a
+                  >Khách tiềm năng</a
                 >
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'layouts:detached'%}"
-                  target="_blank"
+                  href="/clients/list_customers"
                   class="nav-link"
                   data-key="t-detached"
-                  >Detached</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  href="{% url 'layouts:two_colomn'%}"
-                  target="_blank"
-                  class="nav-link"
-                  data-key="t-two-column"
-                  >Two Column</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  href="{% url 'layouts:hovered'%}"
-                  target="_blank"
-                  class="nav-link"
-                  data-key="t-hovered"
-                  >Hovered</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  href="{% url 'layouts:vertical'%}"
-                  target="_blank"
-                  class="nav-link"
-                  data-key="t-hovered"
-                  >Vertical</a
+                  >Danh sách lưu</a
                 >
               </li>
             </ul>
@@ -614,7 +154,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.signin_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -623,7 +163,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.signin_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -649,7 +189,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.signup_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -658,7 +198,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.signup_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -685,7 +225,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.pass_reset_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -694,7 +234,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.pass_reset_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -721,7 +261,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.lockscreen_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -730,7 +270,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.lockscreen_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -757,7 +297,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.logout_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -766,7 +306,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.logout_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -792,7 +332,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.success_msg_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -801,7 +341,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.success_msg_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -827,7 +367,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.twostep_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-basic"
                       >
@@ -836,7 +376,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.twostep_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-cover"
                       >
@@ -862,7 +402,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.404_basic' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-404-basic"
                       >
@@ -871,7 +411,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.404_cover' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-404-cover"
                       >
@@ -880,7 +420,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.404_alt' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-404-alt"
                       >
@@ -889,7 +429,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:authentication.500' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-500"
                       >
@@ -918,7 +458,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.starter' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-starter"
                 >
@@ -941,7 +481,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:pages.profile' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-simple-page"
                       >
@@ -950,7 +490,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'pages:pages.profile_settings' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-settings"
                       >
@@ -962,7 +502,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.team' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-team"
                 >
@@ -971,7 +511,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.timeline' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-timeline"
                 >
@@ -980,7 +520,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.faqs' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-faqs"
                 >
@@ -989,7 +529,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.pricing' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-pricing"
                 >
@@ -998,7 +538,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.gallery' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-gallery"
                 >
@@ -1007,7 +547,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.maintenance' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-maintenance"
                 >
@@ -1016,7 +556,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.coming_soon' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-coming-soon"
                 >
@@ -1025,7 +565,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.sitemap' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-sitemap"
                 >
@@ -1034,7 +574,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'pages:pages.search_results' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-search-results"
                 >
@@ -1049,7 +589,7 @@
           <a
             class="nav-link menu-link"
             target="_blank"
-            href="{% url 'pages:pages.landing' %}"
+            href="#"
           >
             <i class="ri-rocket-line"></i>
             <span data-key="t-landing">Landing</span>
@@ -1080,7 +620,7 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.alerts' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-alerts"
                       >Alerts</a
@@ -1088,7 +628,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.badges' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-badges"
                       >Badges</a
@@ -1096,7 +636,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.buttons' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-buttons"
                       >Buttons</a
@@ -1104,7 +644,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.colors' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-colors"
                       >Colors</a
@@ -1112,7 +652,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.cards' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-cards"
                       >Cards</a
@@ -1120,7 +660,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.carousel' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-carousel"
                       >Carousel</a
@@ -1128,7 +668,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.dropdowns' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-dropdowns"
                       >Dropdowns</a
@@ -1136,7 +676,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.grid' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-grid"
                       >Grid</a
@@ -1148,7 +688,7 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.images' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-images"
                       >Images</a
@@ -1156,7 +696,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.tabs' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-tabs"
                       >Tabs</a
@@ -1164,7 +704,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.accordions' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-accordion-collapse"
                       >Accordion & Collapse</a
@@ -1172,7 +712,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.modals' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-modals"
                       >Modals</a
@@ -1180,7 +720,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.offcanvas' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-offcanvas"
                       >Offcanvas</a
@@ -1188,7 +728,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.placeholders' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-placeholders"
                       >Placeholders</a
@@ -1196,7 +736,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.progress' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-progress"
                       >Progress</a
@@ -1204,7 +744,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.notifications' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-notifications"
                       >Notifications</a
@@ -1216,7 +756,7 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.media' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-media-object"
                       >Media object</a
@@ -1224,7 +764,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.embed_video' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-embed-video"
                       >Embed Video</a
@@ -1232,7 +772,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.typography' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-typography"
                       >Typography</a
@@ -1240,7 +780,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.lists' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-lists"
                       >Lists</a
@@ -1248,7 +788,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.general' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-general"
                       >General</a
@@ -1256,7 +796,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.ribbons' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-ribbons"
                       >Ribbons</a
@@ -1264,7 +804,7 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="{% url 'components:base_ui.utilities' %}"
+                      href="#"
                       class="nav-link"
                       data-key="t-utilities"
                       >Utilities</a
@@ -1295,7 +835,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.sweetalerts' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-sweet-alerts"
                   >Sweet Alerts</a
@@ -1303,7 +843,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.nestable' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-nestable-list"
                   >Nestable List</a
@@ -1311,7 +851,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.scrollbar' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-scrollbar"
                   >Scrollbar</a
@@ -1319,7 +859,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.animation' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-animation"
                   >Animation</a
@@ -1327,7 +867,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.tour' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-tour"
                   >Tour</a
@@ -1335,7 +875,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.swiper' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-swiper-slider"
                   >Swiper Slider</a
@@ -1343,7 +883,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.ratings' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-ratings"
                   >Ratings</a
@@ -1351,7 +891,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.highlight' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-highlight"
                   >Highlight</a
@@ -1359,7 +899,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:adance_ui.scrollspy' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-scrollSpy"
                   >ScrollSpy</a
@@ -1370,7 +910,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link menu-link" href="{% url 'components:widgets' %}">
+          <a class="nav-link menu-link" href="#">
             <i class="ri-honour-line"></i>
             <span data-key="t-widgets">Widgets</span>
           </a>
@@ -1392,7 +932,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.elements' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-basic-elements"
                   >Basic Elements</a
@@ -1400,7 +940,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.select' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-form-select"
                 >
@@ -1409,7 +949,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.checkboxs_radios' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-checkboxs-radios"
                   >Checkboxs & Radios</a
@@ -1417,7 +957,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.pickers' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-pickers"
                 >
@@ -1426,7 +966,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.masks' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-input-masks"
                   >Input Masks</a
@@ -1434,7 +974,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.advanced' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-advanced"
                   >Advanced</a
@@ -1442,7 +982,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.range_sliders' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-range-slider"
                 >
@@ -1451,7 +991,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.validation' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-validation"
                   >Validation</a
@@ -1459,7 +999,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.wizard' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-wizard"
                   >Wizard</a
@@ -1467,7 +1007,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.editors' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-editors"
                   >Editors</a
@@ -1475,7 +1015,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.file_uploads' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-file-uploads"
                   >File Uploads</a
@@ -1483,7 +1023,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:forms.layouts' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-form-layouts"
                   >Form Layouts</a
@@ -1509,7 +1049,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'components:tables.basic' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-basic-tables"
                   >Basic Tables</a
@@ -1517,7 +1057,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:tables.gridjs' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-grid-js"
                   >Grid Js</a
@@ -1525,7 +1065,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:tables.listjs' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-list-js"
                   >List Js</a
@@ -1565,7 +1105,7 @@
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.line' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-line"
                       >
@@ -1574,7 +1114,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.area' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-area"
                       >
@@ -1583,7 +1123,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.column' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-column"
                       >
@@ -1592,7 +1132,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.bar' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-bar"
                       >
@@ -1601,7 +1141,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.mixed' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-mixed"
                       >
@@ -1610,7 +1150,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.timeline' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-timeline"
                       >
@@ -1619,7 +1159,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.candlestick' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-candlstick"
                       >
@@ -1628,7 +1168,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.boxplot' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-boxplot"
                       >
@@ -1637,7 +1177,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.bubble' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-bubble"
                       >
@@ -1646,7 +1186,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.scatter' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-scatter"
                       >
@@ -1655,7 +1195,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.heatmap' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-heatmap"
                       >
@@ -1664,7 +1204,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.treemap' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-treemap"
                       >
@@ -1673,7 +1213,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.pie' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-pie"
                       >
@@ -1682,7 +1222,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.radialbar' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-radialbar"
                       >
@@ -1691,7 +1231,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.radar' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-radar"
                       >
@@ -1700,7 +1240,7 @@
                     </li>
                     <li class="nav-item">
                       <a
-                        href="{% url 'components:charts.apex_charts.polar' %}"
+                        href="#"
                         class="nav-link"
                         data-key="t-polar-area"
                       >
@@ -1712,7 +1252,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:charts.chartjs' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-chartjs"
                 >
@@ -1721,7 +1261,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:charts.echarts' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-echarts"
                 >
@@ -1748,7 +1288,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'components:icons.remix' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-remix"
                   >Remix</a
@@ -1756,7 +1296,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:icons.boxicons' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-boxicons"
                   >Boxicons</a
@@ -1764,7 +1304,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:icons.materialdesign' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-material-design"
                   >Material Design</a
@@ -1772,7 +1312,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:icons.lineawesome' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-line-awesome"
                   >Line Awesome</a
@@ -1780,7 +1320,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:icons.feather' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-feather"
                   >Feather</a
@@ -1805,7 +1345,7 @@
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
                 <a
-                  href="{% url 'components:maps.google' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-google"
                 >
@@ -1814,7 +1354,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:maps.vector' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-vector"
                 >
@@ -1823,7 +1363,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="{% url 'components:maps.leaflet' %}"
+                  href="#"
                   class="nav-link"
                   data-key="t-leaflet"
                 >

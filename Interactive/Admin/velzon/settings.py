@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-DEFAULT_APPS = [    
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,15 +38,15 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    
-    ]
+
+]
 LOCAL_APPS = [
     "dashboards",
     "apps",
     "layouts",
     "components",
     "pages"
-    ]
+]
 THIRDPARTY_APPS = [
     # Crispy Forms
     "crispy_forms",
@@ -58,7 +58,7 @@ THIRDPARTY_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-INSTALLED_APPS = DEFAULT_APPS +LOCAL_APPS +THIRDPARTY_APPS
+INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIRDPARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,7 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -179,10 +179,10 @@ LOGIN_URL = "account_login"
 ACCOUNT_LOGOUT_ON_GET = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
-# All Auth Forms Customization 
+# All Auth Forms Customization
 
 ACCOUNT_FORMS = {
     "login": "velzon.forms.UserLoginForm",
@@ -207,5 +207,3 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
-

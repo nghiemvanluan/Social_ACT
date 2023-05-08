@@ -8,6 +8,7 @@ from velzon.views import access_token
 get_tags_url = 'http://45.119.82.5:8088/social/api/get_tags'
 report_detail_url = "http://45.119.82.5:8088/social/api/report_detail"
 comment_analysis_url = "http://45.119.82.5:8088/social/api/comment_analysis"
+user_url = "http://45.119.82.5:8088/social/api/get_user_info"
 
 
 # Create your views here.
@@ -39,7 +40,8 @@ def dashboards(request):
 
     return render(request, 'dashboards/index.html',  {'tag': tag,
                                                       "report_detail": report_detail,
-                                                      'comment_analysis': comment_analysis, })
+                                                      'comment_analysis': comment_analysis,
+                                                      })
 
 
 # ---------------------------------------------
