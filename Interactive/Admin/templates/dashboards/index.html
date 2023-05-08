@@ -94,7 +94,6 @@
                                                             {% comment %} <i class="ri-arrow-right-up-line fs-13 align-middle"></i> % {% endcomment %}
                                                         </h5>
                                                     </div>
-
                                                 </div>
 
                                                 <div class="d-flex align-items-end justify-content-between mt-4">
@@ -217,44 +216,32 @@
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="card">
-                                            <div class="card-header border-0 align-items-center d-flex">
+                                            <div class="card-header align-items-center d-flex">
                                                 <h4 class="card-title mb-0 flex-grow-1">Độ tuổi phổ biến</h4>
                                             </div><!-- end card header -->
-
                                             <div class="card-body p-0 pb-2">
                                                 <canvas id="myChart"></canvas>
                                                 {% comment %} <div id="customer_impression_charts" data-colors='["--vz-info", "--vz-primary", "--vz-danger"]' class="apex-charts" dir="ltr"></div> {% endcomment %}
-
                                             </div><!-- end card body -->
                                         </div><!-- end card -->
                                     </div><!-- end col -->
                                     <!-- end col -->
                                 </div>
 
+
                                 <div class="row">
-                                    <div class="col-xl-4">
+                                    <div class="col-xl-5">
                                         <div class="card card-height-100">
                                             <div class="card-header align-items-center d-flex">
-                                                <h4 class="card-title mb-0 flex-grow-1">Trạng thái</h4>
-                                                <div class="flex-shrink-0">
-                                                    <div class="dropdown card-header-dropdown">
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Download Report</a>
-                                                            <a class="dropdown-item" href="#">Export</a>
-                                                            <a class="dropdown-item" href="#">Import</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <h4 class="card-title mb-0 flex-grow-1">Học vấn</h4>
                                             </div><!-- end card header -->
-
                                             <div class="card-body">
-                                                <div id="store-visits-source" data-colors='["--vz-primary", "--vz-primary-rgb, 0.85", "--vz-primary-rgb, 0.70", "--vz-primary-rgb, 0.60", "--vz-primary-rgb, 0.45"]' class="apex-charts" dir="ltr"></div>
+                                                <canvas id="Chart1" style="margin-top:-30px;height:530px;width:770.667px"></canvas>
                                                 {% comment %} <canvas id="myChartTr" class="apex-charts canvas" dir="ltr" ></canvas> {% endcomment %}
                                             </div>
                                         </div> <!-- .card-->
                                     </div> <!-- .col-->
-
-                                    <div class="col-xl-8">
+                                    <div class="col-xl-7">
                                         <div class="card">
                                             <div class="card-header align-items-center d-flex">
                                                 <h4 class="card-title mb-0 flex-grow-1">Các bình luận tiêu biểu</h4>
@@ -264,7 +251,6 @@
                                                     </button> {% endcomment %}
                                                 </div>
                                             </div><!-- end card header -->
-
                                             <div class="card-body">
                                                 <div class="table-responsive table-card overflow">
                                                     <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
@@ -284,9 +270,7 @@
                                         </div> <!-- .card-->
                                     </div> <!-- .col-->
                                 </div> <!-- end row-->
-
                             </div> <!-- end .h-100-->
-
                         </div> <!-- end col -->
 
 
@@ -309,6 +293,14 @@
                 <div id="ages4">{{report.ages.4.value}}</div>
                 <div id="ages5">{{report.ages.5.value}}</div>
                 {% endwith %}
+            </div>
+            <div style="display: none">
+              {% with report=report_detail %}
+              <div id="education0">{{report.educational_attainment.0.value}}</div>
+              <div id="education1">{{report.educational_attainment.1.value}}</div>
+              <div id="education2">{{report.educational_attainment.2.value}}</div>
+              <div id="education3">{{report.educational_attainment.3.value}}</div>
+              {% endwith %}
             </div>
         </div>
         <!-- end main content-->
@@ -346,7 +338,37 @@
         },
     });
 </script>
+<script>
+      const education0 = document.getElementById("education0").innerText;
+      const education1 = document.getElementById("education1").innerText;
+      const education2 = document.getElementById("education2").innerText;
+      const education3 = document.getElementById("education3").innerText;
 
+var xValues = ["Trung học", "Cử nhân", "Sau đại học", "Chuyên gia"];
+var yValues = [education0, education1, education2, education3];
+var barColors = [
+  "#ffc84b",
+  "#29badb",
+  "#f17171",
+  "#e8c3b9",
+];
+
+new Chart("Chart1", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+    }
+  }
+});
+</script>
 
 <script>
     var xValues = ["Italy", "France", "Spain"];
