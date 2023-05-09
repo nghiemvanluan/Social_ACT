@@ -35,7 +35,7 @@ from apps.views import (
     apps_tickets_list_view,
     apps_tickets_details_view
 )
-from .views import source, status_c, delete_source, sourceJs
+from .views import source, status_c, delete_source, sourceJs, clients, list_customer, detail_customer
 app_name = "apps"
 
 urlpatterns = [
@@ -101,4 +101,9 @@ urlpatterns = [
     path('status_c/<int:source_id>/<status>/', status_c, name="status_c"),
     path('delete/<int:source_id>/', delete_source, name='delete_source'),
     path('sourceJs/', sourceJs, name='sourceJs'),
+
+    path('clients/', clients, name='clients'),
+    path('list_customers/', list_customer, name='list_customer'),
+    path('clients/CustomerDetails/<int:customer_id>/',
+         detail_customer, name='detail_customer'),
 ]
