@@ -12,6 +12,10 @@ get_sources_url = 'http://45.119.82.5:8088/social/api/get_sources'
 get_tags_url = 'http://45.119.82.5:8088/social/api/get_tags'
 list_customer_url = 'http://45.119.82.5:8088/social/api/list_suggest'
 create_tracking_url = 'http://45.119.82.5:8088/social/api/create_tracking'
+search_customers_url = 'http://45.119.82.5:8088/social/api/search_customers'
+save_customer_url = 'http://45.119.82.5:8088/social/api/save_customer'
+get_customers_url = 'http://45.119.82.5:8088/social/api/get_customers'
+detail_customer_url = 'http://45.119.82.5:8088/social/api/detail_customer'
 
 # Create your views here.
 
@@ -192,3 +196,73 @@ def delete_source(request, source_id):
     requests.post(
         delete_source_url, headers=headers, data=data)
     return redirect('/source/')
+
+
+def clients(request):
+    access_token = request.session.get('access_token')
+    headers = {
+        'access_token': access_token
+    }
+    get_tags = requests.get(get_tags_url).json()
+    get_customers = requests.post(get_customers_url, headers=headers).json()
+    search_customers = None
+    check = False
+    if request.method == 'POST':
+        source_id_check = request.POST.get('sources_id_check')
+        mess_input = request.POST.get('mess_input')
+        tag_id_check = request.POST.get('tag_id_check')
+        data = {
+            'keyword': mess_input,
+            'tag_id': tag_id_check,
+        }
+        search_customers = requests.post(
+            search_customers_url, data=data, headers=headers).json()
+
+        name = request.POST.get('name_kh')
+        if name != None:
+            name = request.POST.get('name_kh')
+            customer_name = request.POST.get('name')
+            group_id = request.POST.get('group_id')
+            group_name = request.POST.get('group_name')
+            profile_url = request.POST.get('profile_url')
+            source_id = source_id_check
+            tag_id = tag_id_check
+            keyword = mess_input
+            is_custom = False
+
+            dataSave = {
+                'name': name,
+                'customer_name': customer_name,
+                'group_id': group_id,
+                'group_name': group_name,
+                'profile_url': profile_url,
+                'source_id': source_id,
+                'tag_id': tag_id,
+                'keyword': keyword,
+                'is_custom': is_custom
+            }
+            for item in get_customers:
+                if item['profile_url'] == profile_url:
+                    check = True
+            if check == False:
+                requests.post(
+                    save_customer_url, data=dataSave, headers=headers).json()
+    return render(request, 'apps/ecommerce/apps-ecommerce-orders.html', {'tags': get_tags, 'search_customers': search_customers, })
+
+
+def list_customer(request):
+    access_token = request.session.get('access_token')
+    headers = {
+        'access_token': access_token
+    }
+    get_customers = requests.post(get_customers_url, headers=headers).json()
+    return render(request, 'apps/crm/apps-crm-leads.html', {'get_customers': get_customers})
+
+
+def detail_customer(request, customer_id):
+    access_token = request.session.get('access_token')
+    headers = {'access_token': access_token}
+    data = {'customer_id': customer_id}
+    detail_customer = requests.post(
+        detail_customer_url, headers=headers, data=data).json()
+    return render(request, 'apps/crm/apps-crm-companies.html', {'detail_c': detail_customer})

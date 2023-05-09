@@ -1,4 +1,5 @@
-{% extends "partials/base.html" %} {% load static %} {% block title%} Customers {% endblock title %} {% block extra_css %}
+{% extends "partials/base.html" %} {% load static %} {% block title%} Customers
+{% endblock title %} {% block extra_css %}
 <!-- Sweet Alert css-->
 <link
   href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}"
@@ -13,7 +14,6 @@
 <div class="main-content">
   <div class="page-content">
     <div class="container-fluid">
-
       <div class="row">
         <div class="col-lg-12">
           <div class="card" id="customerList">
@@ -26,12 +26,14 @@
                 </div>
                 <div class="col-sm-auto">
                   <div>
-                    {% comment %} <button
+                    {% comment %}
+                    <button
                       class="btn btn-soft-danger"
                       onClick="deleteMultiple()"
                     >
                       <i class="ri-delete-bin-2-line"></i>
-                    </button> {% endcomment %}
+                    </button>
+                    {% endcomment %}
                     <button
                       type="button"
                       class="btn btn-success add-btn"
@@ -39,17 +41,21 @@
                       id="create-btn"
                       data-bs-target="#showModal"
                     >
-                      <i class="ri-add-line align-bottom me-1"></i> Thêm nguồn mặc định
+                      <i class="ri-add-line align-bottom me-1"></i> Thêm nguồn
+                      mặc định
                     </button>
-                    {% comment %} <button type="button" class="btn btn-info">
+                    {% comment %}
+                    <button type="button" class="btn btn-info">
                       <i class="ri-file-download-line align-bottom me-1"></i>
                       Import
-                    </button> {% endcomment %}
+                    </button>
+                    {% endcomment %}
                   </div>
                 </div>
               </div>
             </div>
-            {% comment %} <div class="card-body border-bottom-dashed border-bottom">
+            {% comment %}
+            <div class="card-body border-bottom-dashed border-bottom">
               <form>
                 <div class="row g-3">
                   <div class="col-xl-6">
@@ -116,7 +122,8 @@
                 </div>
                 <!--end row-->
               </form>
-            </div> {% endcomment %}
+            </div>
+            {% endcomment %}
             <div class="card-body">
               <div>
                 <div class="table-responsive table-card mb-1">
@@ -124,7 +131,9 @@
                     <thead class="table-light text-muted">
                       <tr>
                         <th class="sort" data-sort="id">#</th>
-                        <th class="sort" data-sort="Name_Source">Name Source</th>
+                        <th class="sort" data-sort="Name_Source">
+                          Name Source
+                        </th>
                         <th class="sort" data-sort="Link_Id">Link Id</th>
                         <th class="sort" data-sort="Group">Group</th>
                         <th class="sort" data-sort="Type">Type</th>
@@ -133,7 +142,7 @@
                       </tr>
                     </thead>
                     <tbody class="list form-check-all">
-                    {% for i in track_list %}
+                      {% for i in track_list %}
                       <tr>
                         <td class="id">{{i.id}}</td>
                         <td class="name">{{i.name}}</td>
@@ -189,7 +198,7 @@
                           </ul>
                         </td>
                       </tr>
-                    {% endfor %}
+                      {% endfor %}
                     </tbody>
                   </table>
                   <div class="noresult" style="display: none">
@@ -209,7 +218,8 @@
                     </div>
                   </div>
                 </div>
-                {% comment %} <div class="d-flex justify-content-end">
+                {% comment %}
+                <div class="d-flex justify-content-end">
                   <div class="pagination-wrap hstack gap-2">
                     <a class="page-item pagination-prev disabled" href="#">
                       Previous
@@ -217,7 +227,8 @@
                     <ul class="pagination listjs-pagination mb-0"></ul>
                     <a class="page-item pagination-next" href="#"> Next </a>
                   </div>
-                </div> {% endcomment %}
+                </div>
+                {% endcomment %}
               </div>
               <div
                 class="modal fade"
@@ -238,7 +249,7 @@
                       ></button>
                     </div>
                     <form action="#" method="post">
-                     {% csrf_token %}
+                      {% csrf_token %}
                       <div class="modal-body">
                         <input type="hidden" id="id-field" />
 
@@ -257,7 +268,7 @@
                           <label for="customername-field" class="form-label"
                             >Tên Nguồn</label
                           >
-                           <span>
+                          <span>
                             <select
                               name="source_id"
                               class="form-select"
@@ -270,7 +281,6 @@
                               {%
                               endifchanged
                               %}
-                             
                             >
                               {% for i in response %}
                               <option value="{{i.id}}">{{i.name}}</option>
@@ -306,7 +316,7 @@
 
                         <div class="mb-3">
                           <label for="phone-field" class="form-label"
-                            >Phone</label
+                            >Nguồn</label
                           >
                           <span id="span_listSuggest">
                             <select
@@ -316,7 +326,9 @@
                               id="listSuggest"
                             >
                               {% for i in list_suggest %}
-                              <option value="{{i.id_group}}:{{i.name}}">{{i.name}}</option>
+                              <option value="{{i.id_group}}:{{i.name}}">
+                                {{i.name}}
+                              </option>
                               {% endfor %}
                             </select>
                           </span>
@@ -327,11 +339,13 @@
                             >Lắng nghe nguồn này</label
                           >
                           <span style="margin-left: 1%">
-                              <label class="switch">
+                            <label class="switch">
                               <input name="status" type="checkbox" checked />
-                              <span class="slider round"></span> </label>
+                              <span class="slider round"></span>
+                            </label>
                           </span>
-                          {% comment %} <select
+                          {% comment %}
+                          <select
                             class="form-control"
                             data-choices
                             data-choices-search-false
@@ -341,7 +355,8 @@
                             <option value="">Status</option>
                             <option value="Active">Active</option>
                             <option value="Block">Block</option>
-                          </select> {% endcomment %}
+                          </select>
+                          {% endcomment %}
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -365,7 +380,7 @@
                     </form>
                   </div>
                 </div>
-              </div> 
+              </div>
 
               <!-- Modal -->
               <div
@@ -434,47 +449,44 @@
   </div>
   <!-- End Page-content -->
   {% endblock content %} {% block extra_js %}
-   <script>
-      function getListSuggest() {
-        var sourceId = document.getElementsByName("source_id")[0].value;
-        var tagId = document.getElementsByName("tag_id")[0].value;
-        var data = {
-          source_id: sourceId,
-          tag_id: tagId,
-        };
+  <script>
+    function getListSuggest() {
+      var sourceId = document.getElementsByName("source_id")[0].value;
+      var tagId = document.getElementsByName("tag_id")[0].value;
+      var data = {
+        source_id: sourceId,
+        tag_id: tagId,
+      };
 
-        $.ajax({
-          url: "/source/sourceJs",
-          type: "get",
-          data: data,
-          success: function (data) {
-            console.log(data.list_suggest.length);
-            var selectElement = document.createElement("select");
-            for (var i = 0; i < data.list_suggest.length; i++) {
-              var option = document.createElement("option");
-              option.value =
-                data.list_suggest[i].id_group + ":" + data.list_suggest[i].name;
-              option.text = data.list_suggest[i].name;
-              selectElement.appendChild(option);
-            }
+      $.ajax({
+        url: "/source/sourceJs",
+        type: "get",
+        data: data,
+        success: function (data) {
+          console.log(data.list_suggest.length);
+          var selectElement = document.createElement("select");
+          for (var i = 0; i < data.list_suggest.length; i++) {
+            var option = document.createElement("option");
+            option.value =
+              data.list_suggest[i].id_group + ":" + data.list_suggest[i].name;
+            option.text = data.list_suggest[i].name;
+            selectElement.appendChild(option);
+          }
 
-            var select = document.getElementById("listSuggest");
-            select.parentNode.removeChild(select);
-            selectElement.id = "listSuggest";
-            selectElement.name = "keyword";
-            selectElement.classList = "form-select";
-            var span_listSuggest = document.getElementById("span_listSuggest");
-            span_listSuggest.appendChild(selectElement);
-          },
-          error: function (xhr, status, error) {
-            console.log(error);
-          },
-        });
-      }
-    </script>
-
-
-
+          var select = document.getElementById("listSuggest");
+          select.parentNode.removeChild(select);
+          selectElement.id = "listSuggest";
+          selectElement.name = "keyword";
+          selectElement.classList = "form-select";
+          var span_listSuggest = document.getElementById("span_listSuggest");
+          span_listSuggest.appendChild(selectElement);
+        },
+        error: function (xhr, status, error) {
+          console.log(error);
+        },
+      });
+    }
+  </script>
 
   <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
   <script src="{% static 'libs/simplebar/simplebar.min.js'%}"></script>
@@ -483,21 +495,18 @@
   <script src="{% static 'js/pages/plugins/lord-icon-2.1.0.js'%}"></script>
   <script src="{% static 'js/plugins.js'%}"></script>
 
-    <!-- list.js min js -->
+  <!-- list.js min js -->
   <script src="{% static 'libs/list.js/list.min.js'%}"></script>
   <script src="{% static 'libs/list.pagination.js/list.pagination.min.js'%}"></script>
 
-    <!--ecommerce-customer init js -->
+  <!--ecommerce-customer init js -->
   <script src="{% static 'js/pages/ecommerce-customer-list.init.js'%}"></script>
-  
 
-    <!-- Sweet Alerts js -->
+  <!-- Sweet Alerts js -->
   <script src="{% static 'libs/sweetalert2/sweetalert2.min.js'%}"></script>
 
-    <!-- App js -->
+  <!-- App js -->
   <script src="{% static 'js/app.js'%}"></script>
-  
-
 
   <!-- list.js min js -->
   <script src="{% static 'libs/list.js/dist/list.min.js'%}"></script>
