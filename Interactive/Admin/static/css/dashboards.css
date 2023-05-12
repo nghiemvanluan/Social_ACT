@@ -14,3 +14,20 @@
 .card-body {
   min-height: 241px;
 }
+.avatar-title {
+    align-items: center;
+    color: $white;
+    display: flex;
+    font-weight: $font-weight-medium;
+    justify-content: center;
+    margin-left:1800%;
+    width:290% !important;
+    height:120% !important;
+    margin-top:-25px;
+}
+.overflow {
+ width:105% !important;
+}
+a {
+    display: none;
+}
