@@ -38,7 +38,7 @@ linechartcustomerColors &&
   ((options = {
     series: [
       {
-        name: "Earnings",
+        name: "Số người",
         type: "bar",
         data: [ages0, ages1, ages2, ages3, ages4, ages5],
       },
@@ -69,7 +69,7 @@ var options,
 chartDonutBasicColors &&
   ((options = {
     series: [Number(Negative), Number(Neutral), Number(Positive)],
-    labels: ["Negative", "Neutral", "Positive"],
+    labels: ["Tiêu cực", "Trung lập", "Tích cực"],
     chart: { height: 333, type: "donut" },
     legend: { position: "bottom" },
     stroke: { show: !1 },
