@@ -35,7 +35,7 @@ from apps.views import (
     apps_tickets_list_view,
     apps_tickets_details_view
 )
-from .views import source, status_c, delete_source, sourceJs, clients, list_customer, detail_customer
+from .views import source, status_c, delete_source, sourceJs, clients, list_customer, detail_customer, delete_customer, typical_comment
 app_name = "apps"
 
 urlpatterns = [
@@ -99,11 +99,18 @@ urlpatterns = [
 
     path("", source, name="ecommerce.customers"),
     path('status_c/<int:source_id>/<status>/', status_c, name="status_c"),
-    path('delete/<int:source_id>/', delete_source, name='delete_source'),
+    path('delete_source/', delete_source, name='delete_source'),
     path('sourceJs/', sourceJs, name='sourceJs'),
 
     path('clients/', clients, name='clients'),
     path('list_customers/', list_customer, name='list_customer'),
     path('clients/CustomerDetails/<int:customer_id>/',
          detail_customer, name='detail_customer'),
+
+    path('delete_customer/', delete_customer, name='delete_customer'),
+
+    path('typical_comment/<search>/',
+         typical_comment, name='typical_comment'),
+
+
 ]

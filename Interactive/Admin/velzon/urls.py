@@ -22,9 +22,10 @@ urlpatterns = [
     # # Dashboard
     path('', LoginPage, name="login"),
     # # Apps
-    path('source/', include('apps.urls')),
+    # path('source/', include('apps.urls')),
     path('dashboards/', include('dashboards.urls')),
-    path('clients/', include('apps.urls')),
+    path('source-clients/', include('apps.urls')),
+    path('user/', include('pages.urls')),
     # # Layouts
     # path('layouts/', include('layouts.urls')),
     # # Components

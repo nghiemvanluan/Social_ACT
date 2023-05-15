@@ -1,0 +1,493 @@
+{% extends "partials/base.html" %} {% load static %} {% block title %} Orders
+{%endblock title %} {% block extra_css %}
+<!-- Sweet Alert css-->
+<link
+  href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock extra_css %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+  <div class="page-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card" id="orderList">
+            <div class="card-header border-0">
+              <div class="d-flex align-items-center">
+                <h5 class="card-title mb-0 flex-grow-1">Khách tiềm năng</h5>
+                <div class="flex-shrink-0">
+                  <button
+                    type="button"
+                    class="btn btn-success add-btn"
+                    data-bs-toggle="modal"
+                    id="create-btn"
+                    data-bs-target="#showModal"
+                  >
+                    <i class="ri-add-line align-bottom me-1"></i> Truy Cập
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div>
+                <ul
+                  class="nav nav-tabs nav-tabs-custom nav-success mb-3"
+                  role="tablist"
+                ></ul>
+
+                <div class="table-responsive table-card mb-1">
+                  <table class="table align-middle" id="orderTable">
+                    <thead class="text-muted table-light">
+                      <tr class="text-uppercase">
+                        <th scope="col">Name</th>
+                        <th scope="col">Group Id</th>
+                        <th scope="col">Group Name</th>
+                        <th scope="col">Profile Url</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody class="list form-check-all">
+                      {% for search in search_customers %}
+                      <tr>
+                        <td>{{search.name}}</td>
+                        <td>{{search.group_id}}</td>
+                        <td>{{search.group_name}}</td>
+                        <td>
+                          <a href="{{search.profile_url}}">Trang cá nhân</a>
+                        </td>
+                        <td>
+                          <ul class="list-inline hstack gap-2 mb-0">
+                            <li class="list-inline-item">
+                              <a
+                                class="text-primary d-inline-block"
+                                onClick="hienthi({{search.comments}})"
+                              >
+                                <i class="ri-eye-fill fs-16"></i>
+                              </a>
+                            </li>
+                            <li
+                              class="list-inline-item edit"
+                              data-bs-toggle="tooltip"
+                              data-bs-trigger="hover"
+                              data-bs-placement="top"
+                              title="Edit"
+                            >
+                              <a
+                                href="#eShowModal"
+                                data-bs-toggle="modal"
+                                onclick="fillForm('{{search.name}}', '{{search.group_id}}','{{search.group_name}}','{{search.profile_url}}','{{search.source_id}}','{{search.tag_id}}','{{search.keyword}}','{{search.is_custom}}')"
+                                class="text-primary d-inline-block edit-item-btn"
+                              >
+                                <i class="ri-pencil-fill fs-16"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <div class="noresult" style="display: none">
+                    <div class="text-center">
+                      <lord-icon
+                        src="https://cdn.lordicon.com/msoeawqm.json"
+                        trigger="loop"
+                        colors="primary:#405189,secondary:#0ab39c"
+                        style="width: 75px; height: 75px"
+                      >
+                      </lord-icon>
+                      <h5 class="mt-2">Sorry! No Result Found</h5>
+                      <p class="text-muted">
+                        We've searched more than 150+ Orders We did not find any
+                        orders for you search.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="modal fade"
+                id="showModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header bg-light p-3">
+                      <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        id="close-modal"
+                      ></button>
+                    </div>
+                    <form action="#" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        <input type="hidden" id="id-field" />
+
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Từ khóa tìm kiếm</label
+                          >
+                          <input
+                            type="text"
+                            id="customername-field"
+                            name="mess_input"
+                            class="form-control"
+                            placeholder="Từ khóa tìm kiếm"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="productname-field" class="form-label"
+                            >Chọn ngành</label
+                          >
+                          <select
+                            class="form-control"
+                            data-trigger
+                            name="tag_id_check"
+                            name="productname-field"
+                            id="productname-field"
+                          >
+                            {% for i in tags %}
+                            <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="hstack gap-2 justify-content-end">
+                          <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            type="submit"
+                            class="btn btn-success"
+                            id="add-btn"
+                          >
+                            Add Order
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="modal fade"
+                id="eShowModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header bg-light p-3">
+                      <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        id="close-modal"
+                      ></button>
+                    </div>
+                    <form action="#" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        <input type="hidden" id="id-field" />
+
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Nhập tên</label
+                          >
+                          <input
+                            type="text"
+                            name="name_kh"
+                            id="name_kh"
+                            for="name_kh"
+                            class="form-control"
+                            placeholder="Nhập tên"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Tên FB</label
+                          >
+                          <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Group Id</label
+                          >
+                          <input
+                            type="text"
+                            name="group_id"
+                            id="group_id"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Group Name</label
+                          >
+                          <input
+                            type="text"
+                            name="group_name"
+                            id="group_name"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Profile Url</label
+                          >
+                          <input
+                            type="text"
+                            name="profile_url"
+                            id="profile_url"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Source Id</label
+                          >
+                          <input
+                            type="text"
+                            name="source_id"
+                            id="source_id"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Tag Id</label
+                          >
+                          <input
+                            type="text"
+                            name="tag_id"
+                            id="tag_id"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Keyword</label
+                          >
+                          <input
+                            type="text"
+                            name="keyword"
+                            id="keyword"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="customername-field" class="form-label"
+                            >Is Custom</label
+                          >
+                          <input
+                            type="text"
+                            name="is_custom"
+                            id="is_custom"
+                            readonly
+                            for="name"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="hstack gap-2 justify-content-end">
+                          <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            type="submit"
+                            class="btn btn-success"
+                            id="add-btn"
+                          >
+                            Add Order
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="showComments">
+                <div
+                  class="modal-dialog modal-dialog-centered"
+                  id="showCommentsCC"
+                  style="max-width: 800px !important"
+                >
+                  <div class="modal-content">
+                    <div class="modal-header bg-light p-3">
+                      <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        id="close-modal"
+                        onClick="Close()"
+                      ></button>
+                    </div>
+                    <table
+                      class="table align-middle"
+                      id="orderTable"
+                      style="margin: 20px; width: 95%"
+                    >
+                      <thead class="text-muted table-light">
+                        <tr class="text-uppercase">
+                          <th scope="col">
+                            Các bình luận tiêu biểu của tài khoản
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="list form-check-all"
+                        id="comments_tr"
+                      ></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% block footer %} {% include "partials/footer.html" %} {% endblock footer %}
+</div>
+<!-- end main content-->
+{% endblock content %} {% block extra_js %}
+<script>
+  function hienthi(comments) {
+    document.getElementById("showComments").style.display = "inherit";
+    document.getElementById("showComments").style.opacity = 1;
+    document.getElementById("showCommentsCC").style.opacity = 1;
+    console.log(comments);
+    let textcomment = "";
+    for (let i of comments) {
+      textcomment = textcomment + `<tr style="height: 20px;">${i.text}</tr>`;
+    }
+    document.getElementById("comments_tr").innerHTML = textcomment;
+  }
+
+  function Close() {
+    document.getElementById("showComments").style.display = "none";
+    document.getElementById("showComments").style.opacity = 0;
+    document.getElementById("showCommentsCC").style.opacity = 0;
+  }
+
+  function fillForm(
+    name,
+    group_id,
+    group_name,
+    profile_url,
+    source_id,
+    tag_id,
+    keyword,
+    is_custom
+  ) {
+    document.getElementById("name").value = name;
+    document.getElementById("group_id").value = group_id;
+    document.getElementById("group_name").value = group_name;
+    document.getElementById("profile_url").value = profile_url;
+    document.getElementById("source_id").value = source_id;
+    document.getElementById("tag_id").value = tag_id;
+    document.getElementById("keyword").value = keyword;
+    document.getElementById("is_custom").value = is_custom;
+
+    toast1 = document.getElementById("div_form_save");
+    toast1.style.display = "block";
+    toast1.style.position = "fixed";
+    toast1.style.top = "10px";
+    toast1.style.left = "10%";
+  }
+
+  toast2 = document.getElementById("close_form");
+  toast1 = document.getElementById("div_form_save");
+  toast2.addEventListener("click", function () {
+    console.log(11);
+    toast1.style.display = "none";
+  });
+</script>
+
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js'%}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js'%}"></script>
+<script src="{% static 'libs/feather-icons/feather.min.js'%}"></script>
+<script src="{% static 'js/pages/plugins/lord-icon-2.1.0.js'%}"></script>
+<script src="{% static 'js/plugins.js'%}"></script>
+
+<!-- list.js min js -->
+<script src="{% static 'libs/list.js/list.min.js'%}"></script>
+
+<!--list pagination js-->
+<script src="{% static 'libs/list.pagination.js/list.pagination.min.js'%}"></script>
+
+<!-- ecommerce-order init js -->
+<script src="{% static 'js/pages/ecommerce-order.init.js'%}"></script>
+
+<!-- Sweet Alerts js -->
+<script src="{% static 'libs/sweetalert2/sweetalert2.min.js'%}"></script>
+
+<!-- App js -->
+<script src="{% static 'js/app.js'%}"></script>
+
+<!-- list.js min js -->
+<script src="{% static 'libs/list.js/dist/list.min.js'%}"></script>
+
+<!--list pagination js-->
+<script src="{% static 'libs/list.pagination.js/dist/list.pagination.min.js' %}"></script>
+
+<!-- ecommerce-order init js -->
+<script src="{% static 'js/pages/ecommerce-order.init.js' %}"></script>
+<!-- Sweet Alerts js -->
+<script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+{% endblock extra_js %}

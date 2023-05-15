@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from velzon.views import access_token
+from django.contrib import messages
 
 track_list_url = 'http://45.119.82.5:8088/social/api/track_list'
 status_c_url = 'http://45.119.82.5:8088/social/api/switch_track_status'
@@ -16,6 +17,7 @@ search_customers_url = 'http://45.119.82.5:8088/social/api/search_customers'
 save_customer_url = 'http://45.119.82.5:8088/social/api/save_customer'
 get_customers_url = 'http://45.119.82.5:8088/social/api/get_customers'
 detail_customer_url = 'http://45.119.82.5:8088/social/api/detail_customer'
+delete_customer_url = 'http://45.119.82.5:8088/social/api/delete_customer'
 
 # Create your views here.
 
@@ -148,9 +150,9 @@ def source(request):
         if check == False:
             requests.post(
                 create_tracking_url, data=data, headers=headers)
-        return redirect('/source/')
+        return redirect('/source-clients/')
 
-    return render(request, 'apps/ecommerce/apps-ecommerce-customers.html', {
+    return render(request, 'apps/ecommerce/nguon.html', {
         'track_list': track_list,
         'response': response,
         'tag': tag,
@@ -159,6 +161,7 @@ def source(request):
 
 
 def sourceJs(request):
+
     access_token = request.session.get('access_token')
     headers = {
         'access_token': access_token
@@ -186,16 +189,21 @@ def status_c(request, source_id, status):
                 'status': False}
     requests.post(
         status_c_url, headers=headers, data=data).json()
-    return redirect('/source/')
+    return redirect('/source-clients/')
 
 
-def delete_source(request, source_id):
+def delete_source(request):
     access_token = request.session.get('access_token')
-    headers = {'access_token': access_token}
-    data = {'track_id': source_id}
+    headers = {
+        'access_token': access_token
+    }
+    if request.method == 'GET':
+        dataLS = {
+            'track_id': int(request.GET.get('source_id')),
+        }
     requests.post(
-        delete_source_url, headers=headers, data=data)
-    return redirect('/source/')
+        delete_source_url, headers=headers, data=dataLS)
+    return redirect('/source-clients/')
 
 
 def clients(request):
@@ -247,7 +255,10 @@ def clients(request):
             if check == False:
                 requests.post(
                     save_customer_url, data=dataSave, headers=headers).json()
-    return render(request, 'apps/ecommerce/apps-ecommerce-orders.html', {'tags': get_tags, 'search_customers': search_customers, })
+            else:
+                messages.success(request, 'Lưu dữ liệu thành công!',
+                                 extra_tags='success|autodismiss')
+    return render(request, 'apps/ecommerce/khach-tiem-nang.html', {'tags': get_tags, 'search_customers': search_customers, })
 
 
 def list_customer(request):
@@ -266,3 +277,30 @@ def detail_customer(request, customer_id):
     detail_customer = requests.post(
         detail_customer_url, headers=headers, data=data).json()
     return render(request, 'apps/crm/apps-crm-companies.html', {'detail_c': detail_customer})
+
+
+def delete_customer(request):
+    access_token = request.session.get('access_token')
+    headers = {
+        'access_token': access_token
+    }
+    if request.method == 'GET':
+        dataLS = {
+            'customer_id': int(request.GET.get('customer_id')),
+        }
+    requests.post(
+        delete_customer_url, headers=headers, data=dataLS)
+    return redirect('/source-clients/list_customers/')
+
+    # access_token = request.session.get('access_token')
+    # headers = {'access_token': access_token}
+    # data = {'customer_id': customer_id}
+    # delete_customer = requests.post(
+    #     delete_customer_url, headers=headers, data=data).json()
+    # return redirect('/clients/list_customers/')
+
+
+def typical_comment(request, search):
+    print(search)
+
+    return render(request, '/source-clients/list_customers/')
