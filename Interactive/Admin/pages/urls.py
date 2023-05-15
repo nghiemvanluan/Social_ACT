@@ -34,7 +34,7 @@ from pages.views import (
     pages_landing,
 )
 
-from .views import user
+from .views import user, logout
 
 
 app_name = "pages"
@@ -97,5 +97,6 @@ urlpatterns = [
 
 
     path('', user, name='user'),
+    path('logout/', logout, name='logout'),
 
 ]

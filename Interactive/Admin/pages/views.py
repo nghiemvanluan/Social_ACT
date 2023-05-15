@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 import requests
 # Create your views here.
 
 
 delete_customer_url = 'http://45.119.82.5:8088/social/api/delete_customer'
+user_url = "http://45.119.82.5:8088/social/api/get_user_info"
+logout_url = "http://45.119.82.5:8088/social/api/logout"
 
 
 class PagesView(TemplateView):
@@ -70,4 +72,20 @@ pages_landing = PagesView.as_view(template_name="pages/pages-landing.html")
 
 
 def user(request):
-    return render(request, 'pages/pages-profile.html')
+
+    access_token = request.session.get('access_token')
+    headers = {
+        'access_token': access_token
+    }
+    user = requests.post(user_url, headers=headers).json()
+
+    return render(request, 'pages/pages-user.html', {
+        'user': user})
+
+
+def logout(request):
+    access_token = request.session.get('access_token')
+    headers = {'access_token': access_token}
+    requests.post(
+        logout_url, headers=headers).json()
+    return redirect('/')
