@@ -347,11 +347,12 @@ dountchartUserDeviceColors = getChartColorsArray("user_device_pie_chartsNN");
 dountchartUserDeviceColors &&
   ((options = {
     series: [
-      parseInt(job_0),
-      parseInt(job_1),
-      parseInt(job_2),
-      parseInt(job_3),
-      parseInt(job_4),
+      // parseInt(job_0),
+      // parseInt(job_1),
+      // parseInt(job_2),
+      // parseInt(job_3),
+      // parseInt(job_4),
+      1, 2, 3, 4, 5,
     ],
     labels: ["HS-SV", "Thực tập sinh", "Mới đi làm", "Quản lý", "Điều hành"],
     chart: { type: "donut", height: 219 },
