@@ -1,401 +1,548 @@
-{% extends "partials/base.html" %}
-{% load static %}
-{% block title %}Dashboard{% endblock title %}
-{% block extra_css %}
-    <!-- jsvectormap css -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link href="{% static 'libs/jsvectormap/dist/css/jsvectormap.min.css'%}" rel="stylesheet" type="text/css" />
+{% extends "partials/base.html" %} {% load static %} {% block title%}
+Dashboard{% endblock title %} {% block extra_css %}
+<!-- jsvectormap css -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<link
+  href="{% static 'libs/jsvectormap/dist/css/jsvectormap.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-    <!--Swiper slider css-->
-    <link href="{% static 'libs/swiper/swiper-bundle.min.css'%}" rel="stylesheet" type="text/css" />
+<!--Swiper slider css-->
+<link
+  href="{% static 'libs/swiper/swiper-bundle.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-    <link href="{% static 'css/dashboards.css'%}" rel="stylesheet" type="text/css" />
-{% endblock extra_css %}
-
-{% block content %}
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
-
-            <div class="page-content">
-                <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col">
-
-                            <div class="h-100">
-                                <div class="row mb-3 pb-1">
-                                    <div class="col-12">
-                                        <div class="d-flex align-items-lg-center flex-lg-row flex-column">
-                                            <div class="flex-grow-1">
-                                            </div>
-                                            <div class="mt-3 mt-lg-0">
-                                                <form  method="post">
-                                                {% csrf_token %}
-                                                    <select
-                                                        name="tag_id_check"
-                                                        class="form-select"
-                                                        aria-label="Default select example"
-                                                        style="height: 43px"
-                                                        id="validationCustom04"
-                                                        required
-                                                    >
-                                                        <option selected disabled value="">Chọn ngành</option>
-                                                        {% for i in tag %}
-                                                        <option value="{{i.id}}">{{i.name}}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-success waves-effect waves-light"
-                                                    >
-                                                        Xem
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div><!-- end card header -->
-                                    </div><!--end col-->
-                                </div><!--end row-->
-
-                                <div class="row">
-                                    <div class="col-xl-3 col-md-6">
-                                        <!-- card -->
-                                        <div class="card card-animate">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Giới Tính</p>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <h5 class="text-success fs-14 mb-0">
-                                                            {% comment %} <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +16.24 % {% endcomment %}
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    {% comment %} <div>
-                                                        {% with report=report_detail %}
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Nam: <span class="counter-value" data-target="{{report.genders.0.value}}">{{report.genders.0.value}}</span> người</h4>
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Nữ: <span class="counter-value" data-target="{{report.genders.1.value}}">{{report.genders.1.value}}</span> người</h4>
-                                                        {% endwith %}
-
-                                                    </div> {% endcomment %}
-                                                    <div style="display: none">
-                                                    {% with report=report_detail %}
-                                                        <span id="genders_0">{{report.genders.0.value}}</span>
-                                                        <span id="genders_1">{{report.genders.1.value}}</span>
-                                                    {% endwith %}
-                                                    </div>
-                                                    <div>
-                                                        <div
-                                                            id="countries_charts"
-                                                            data-colors='["--vz-info"]'
-                                                            class="apex-charts"
-                                                            dir="ltr">
-                                                        </div>
-                                                        <!-- end card -->
-                                                    </div>
-                                                </div>
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-                
-                                    <div class="col-xl-3 col-md-6">
-                                        <!-- card -->
-                                        <div class="card card-animate">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Tình trạng hôn nhân</p>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <h5 class="text-danger fs-14 mb-0">
-                                                            {% comment %} <i class="ri-arrow-right-down-line fs-13 align-middle"></i> -3.57 % {% endcomment %}
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    {% comment %} <div>
-                                                        {% with report=report_detail %}
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Đã kết hôn: <span class="counter-value" data-target="{{report.marital_status.0.value}}">{{report.marital_status.0.value}}</span> người</h4>
-                                                            <h4 class="fs-14 fw-semibold ff-secondary mb-3">Chưa kết hôn: <span class="counter-value" data-target="{{report.marital_status.1.value}}">{{report.marital_status.1.value}}</span> người</h4>
-                                                        {% endwith %}
-                                                    </div> {% endcomment %}
-
-                                                    <div style="display: none">
-                                                    {% with report=report_detail %}
-                                                        <span id="marital_status_0">{{report.marital_status.0.value}}</span>
-                                                        <span id="marital_status_1">{{report.marital_status.1.value}}</span>
-                                                    {% endwith %}
-                                                    </div>
-                                                    <div>
-                                                        <div
-                                                            id="countries_chartsHN"
-                                                            data-colors='["--vz-info"]'
-                                                            class="apex-charts"
-                                                            dir="ltr">
-                                                        </div>
-                                                        <!-- end card -->
-                                                    </div>
-                                                </div>
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-
-                                    <div class="col-xl-3 col-md-6">
-                                        <!-- card -->
-                                        <div class="card card-animate">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Học vấn</p>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <h5 class="text-success fs-14 mb-0">
-                                                            {% comment %} <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +29.08 % {% endcomment %}
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    {% comment %} <div>
-                                                    {% with report=report_detail %}
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Trung học: <span class="counter-value" data-target="{{report.educational_attainment.0.value}}">{{report.educational_attainment.0.value}}</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Cử nhân: <span class="counter-value" data-target="{{report.educational_attainment.1.value}}">{{report.educational_attainment.1.value}}</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Sau đại học: <span class="counter-value" data-target="{{report.educational_attainment.2.value}}">{{report.educational_attainment.2.value}}</span> người</h4>
-                                                        <h4 class="fs-14 fw-semibold ff-secondary mb-3">Chuyên gia: <span class="counter-value" data-target="{{report.educational_attainment.3.value}}">{{report.educational_attainment.3.value}}</span> người</h4>
-                                                    {% endwith %}
-                                                    </div> {% endcomment %}
-                                                    <div style="display: none">
-                                                    {% with report=report_detail %}
-                                                        <span id="educational_attainment_0">{{report.educational_attainment.0.value}}</span>
-                                                        <span id="educational_attainment_1">{{report.educational_attainment.1.value}}</span>
-                                                        <span id="educational_attainment_2">{{report.educational_attainment.2.value}}</span>
-                                                        <span id="educational_attainment_3">{{report.educational_attainment.3.value}}</span>
-                                                    {% endwith %}
-                                                    </div>
-
-                                                    <div
-                                                    id="user_device_pie_charts"
-                                                    data-colors='["--vz-primary", "--vz-warning", "--vz-info","--vz-danger"]'
-                                                    class="apex-charts"
-                                                    dir="ltr"
-                                                    ></div>
-                                                </div>
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-
-                                    <div class="col-xl-3 col-md-6">
-                                        <!-- card -->
-                                        <div class="card card-animate">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Nghề Nghiệp</p>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        {% comment %} <h5 class="text-muted fs-14 mb-0">
-                                                            +0.00 %
-                                                        </h5> {% endcomment %}
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    <div style="display: none">
-                                                    {% with report=report_detail %}
-                                                        <span id="job_0">{{report.jod.0.value}}</span>
-                                                        <span id="job_1">{{report.jod.1.value}}</span>
-                                                        <span id="job_2">{{report.jod.2.value}}</span>
-                                                        <span id="job_3">{{report.jod.3.value}}</span>
-                                                        <span id="job_4">{{report.jod.4.value}}</span>
-                                                    {% endwith %}
-                                                    </div>
-
-                                                    <div
-                                                    id="user_device_pie_chartsNN"
-                                                    data-colors='["--vz-primary", "--vz-warning", "--vz-info","--vz-danger","--vz-pink"]'
-                                                    class="apex-charts"
-                                                    dir="ltr"
-                                                    ></div>
-                                                </div>
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-                                </div> <!-- end row-->
-
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="card">
-                                            <div class="card-header border-0 align-items-center d-flex">
-                                                <h4 class="card-title mb-0 flex-grow-1">Độ tuổi phổ biến</h4>
-                                            </div><!-- end card header -->
-
-                                            <div class="card-body p-0 pb-2">
-                                                {% comment %} <canvas id="myChart"></canvas> {% endcomment %}
-                                                <div id="customer_impression_charts" data-colors='[ "--vz-primary"]' class="apex-charts" dir="ltr"></div>
-
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-                                    <div class="col-xl-6">
-                                        <!-- card -->
-                                        <div class="card card-height-100">
-                                            <div class="card-header align-items-center d-flex">
-                                                <h4 class="card-title mb-0 flex-grow-1">Sales by Locations</h4>
-                                                <div class="flex-shrink-0">
-                                                    <button type="button" class="btn btn-soft-primary btn-sm">
-                                                        Export Report
-                                                    </button>
-                                                </div>
-                                            </div><!-- end card header -->
-
-                                            <!-- card body -->
-                                            <div class="card-body">
-
-                                                <div id="sales-by-locations"
-                                                    data-colors='["--vz-light", "--vz-info", "--vz-primary"]'
-                                                    style="height: 269px" dir="ltr"></div>
-
-                                                <div class="px-2 py-2 mt-1">
-                                                </div>
-                                            </div>
-                                            <!-- end card body -->
-                                        </div>
-                                        <!-- end card -->
-                                    </div>
-
-                                    <!-- end col -->
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xl-4">
-                                        <div class="card card-height-100">
-                                            <div class="card-header align-items-center d-flex">
-                                                <h4 class="card-title mb-0 flex-grow-1">Trạng thái</h4>
-                                                <div class="flex-shrink-0">
-                                                    <div class="dropdown card-header-dropdown">
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Download Report</a>
-                                                            <a class="dropdown-item" href="#">Export</a>
-                                                            <a class="dropdown-item" href="#">Import</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end card header -->
-
-                                            <div class="card-body">
-                                                <div id="store-visits-source" data-colors='["--vz-primary", "--vz-primary-rgb, 0.70", "--vz-primary-rgb, 0.45"]' class="apex-charts" dir="ltr"></div>
-                                                {% comment %} <canvas id="myChartTr" class="apex-charts canvas" dir="ltr" ></canvas> {% endcomment %}
-                                            </div>
-                                        </div> <!-- .card-->
-                                    </div> <!-- .col-->
-
-                                    <div class="col-xl-8">
-                                        <div class="card">
-                                            <div class="card-header align-items-center d-flex">
-                                                <h4 class="card-title mb-0 flex-grow-1">Các bình luận tiêu biểu</h4>
-                                                <div class="flex-shrink-0">
-                                                    {% comment %} <button type="button" class="btn btn-soft-info btn-sm">
-                                                        <i class="ri-file-list-3-line align-middle"></i> Generate Report
-                                                    </button> {% endcomment %}
-                                                </div>
-                                            </div><!-- end card header -->
-
-                                            <div class="card-body">
-                                                <div class="table-responsive table-card overflow">
-                                                    <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
-                                                        <thead class="text-muted table-light">
-
-                                                        </thead>
-                                                        <tbody>
-                                                        {% for i in comment_analysis.comment_positive %}
-                                                            <tr>
-                                                                <td>{{i}}</td>
-                                                            </tr><!-- end tr -->
-                                                        {% endfor %}
-                                                        </tbody><!-- end tbody -->
-                                                    </table><!-- end table -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- .card-->
-                                    </div> <!-- .col-->
-                                </div> <!-- end row-->
-
-                            </div> <!-- end .h-100-->
-
-                        </div> <!-- end col -->
-
-
-                    </div>
-                    
+<link
+  href="{% static 'css/dashboards.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock extra_css %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+  <div class="page-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="h-100">
+            <div class="row mb-3 pb-1">
+              <div class="col-12">
+                <div
+                  class="d-flex align-items-lg-center flex-lg-row flex-column"
+                >
+                  <div class="flex-grow-1"></div>
+                  <div class="mt-3 mt-lg-0">
+                    <form method="post">
+                      {% csrf_token %}
+                      <select
+                        name="tag_id_check"
+                        class="form-select"
+                        aria-label="Default select example"
+                        style="height: 43px"
+                        id="validationCustom04"
+                        required
+                      >
+                        <option selected disabled value="">Chọn ngành</option>
+                        {% for i in tag %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                        {% endfor %}
+                      </select>
+                      <button
+                        type="submit"
+                        class="btn btn-success waves-effect waves-light"
+                      >
+                        Xem
+                      </button>
+                    </form>
+                  </div>
                 </div>
-                <!-- container-fluid -->
+                <!-- end card header -->
+              </div>
+              <!--end col-->
             </div>
-            <!-- End Page-content -->
-            {% block footer %}
-            {% include "partials/footer.html" %}
-            {% endblock footer %}
+            <!--end row-->
 
-            <div style="display: none">
-                {% with report=report_detail %}
-                    <div id="ages0">{{report.ages.0.value}}</div>
-                    <div id="ages1">{{report.ages.1.value}}</div>
-                    <div id="ages2">{{report.ages.2.value}}</div>
-                    <div id="ages3">{{report.ages.3.value}}</div>
-                    <div id="ages4">{{report.ages.4.value}}</div>
-                    <div id="ages5">{{report.ages.5.value}}</div>
-                {% endwith %}
+            <div class="row">
+              <div class="col-xl-3 col-md-6">
+                <!-- card -->
+                <div class="card card-animate">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="flex-grow-1 overflow-hidden">
+                        <p
+                          class="text-uppercase fw-medium text-muted text-truncate mb-0"
+                        >
+                          Giới Tính
+                        </p>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <h5 class="text-success fs-14 mb-0"></h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex align-items-end justify-content-between mt-4"
+                    >
+                      <div style="display: none">
+                        {% with report=report_detail %}
+                        <span id="genders_0">{{report.genders.0.value}}</span>
+                        <span id="genders_1">{{report.genders.1.value}}</span>
+                        {% endwith %}
+                      </div>
+                      <div>
+                        <div
+                          id="countries_charts"
+                          data-colors='["--vz-info"]'
+                          class="apex-charts"
+                          dir="ltr"
+                        ></div>
+                        <!-- end card -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
 
-                {% with Negative=comment_analysis.percent_of_negative %}
-                    <div id="Negative">{{Negative}}</div>
-                {% endwith %} {% with Neutral=comment_analysis.percent_of_neutral %}
-                    <div id="Neutral">{{Neutral}}</div>
-                {% endwith %} {% with Positive=comment_analysis.percent_of_positive %}
-                    <div id="Positive">{{Positive}}</div>
-                {% endwith %}
+              <div class="col-xl-3 col-md-6">
+                <!-- card -->
+                <div class="card card-animate">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="flex-grow-1 overflow-hidden">
+                        <p
+                          class="text-uppercase fw-medium text-muted text-truncate mb-0"
+                        >
+                          Tình trạng hôn nhân
+                        </p>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <h5 class="text-danger fs-14 mb-0"></h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex align-items-end justify-content-between mt-4"
+                    >
+                      <div style="display: none">
+                        {% with report=report_detail %}
+                        <span id="marital_status_0"
+                          >{{report.marital_status.0.value}}</span
+                        >
+                        <span id="marital_status_1"
+                          >{{report.marital_status.1.value}}</span
+                        >
+                        {% endwith %}
+                      </div>
+                      <div>
+                        <div
+                          id="countries_chartsHN"
+                          data-colors='["--vz-info"]'
+                          class="apex-charts"
+                          dir="ltr"
+                        ></div>
+                        <!-- end card -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+
+              <div class="col-xl-3 col-md-6">
+                <!-- card -->
+                <div class="card card-animate">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="flex-grow-1 overflow-hidden">
+                        <p
+                          class="text-uppercase fw-medium text-muted text-truncate mb-0"
+                        >
+                          Học vấn
+                        </p>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <h5 class="text-success fs-14 mb-0"></h5>
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <div style="display: none">
+                        {% with report=report_detail %}
+                        <span id="educational_attainment_0"
+                          >{{report.educational_attainment.0.value}}</span
+                        >
+                        <span id="educational_attainment_1"
+                          >{{report.educational_attainment.1.value}}</span
+                        >
+                        <span id="educational_attainment_2"
+                          >{{report.educational_attainment.2.value}}</span
+                        >
+                        <span id="educational_attainment_3"
+                          >{{report.educational_attainment.3.value}}</span
+                        >
+                        {% endwith %}
+                      </div>
+
+                      <div
+                        id="user_device_pie_charts"
+                        data-colors='["--vz-primary", "--vz-warning", "--vz-info","--vz-danger"]'
+                        class="apex-charts"
+                        dir="ltr"
+                      ></div>
+
+                      <div class="table-responsive mt-3">
+                        <table
+                          class="table table-borderless table-sm table-centered align-middle table-nowrap mb-0"
+                        >
+                          <tbody class="border-0">
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-primary me-2"
+                                  ></i
+                                  >HS-SV
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-warning me-2"
+                                  ></i
+                                  >Cử nhân
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-info me-2"
+                                  ></i
+                                  >Sau đại học
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-danger me-2"
+                                  ></i
+                                  >Chuyên gia
+                                </h4>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+
+              <div class="col-xl-3 col-md-6">
+                <!-- card -->
+                <div class="card card-animate">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="flex-grow-1 overflow-hidden">
+                        <p
+                          class="text-uppercase fw-medium text-muted text-truncate mb-0"
+                        >
+                          Nghề Nghiệp
+                        </p>
+                      </div>
+                      <div class="flex-shrink-0">
+                        {% comment %}
+                        <h5 class="text-muted fs-14 mb-0">+0.00 %</h5>
+                        {% endcomment %}
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <div style="display: none">
+                        {% with report=report_detail %}
+                        <span id="job_0">{{report.jod.0.value}}</span>
+                        <span id="job_1">{{report.jod.1.value}}</span>
+                        <span id="job_2">{{report.jod.2.value}}</span>
+                        <span id="job_3">{{report.jod.3.value}}</span>
+                        <span id="job_4">{{report.jod.4.value}}</span>
+                        {% endwith %}
+                      </div>
+
+                      <div
+                        id="user_device_pie_chartsNN"
+                        data-colors='["--vz-primary", "--vz-warning", "--vz-info","--vz-danger","--vz-pink"]'
+                        class="apex-charts"
+                        dir="ltr"
+                      ></div>
+
+                      <div class="table-responsive mt-3">
+                        <table
+                          class="table table-borderless table-sm table-centered align-middle table-nowrap mb-0"
+                        >
+                          <tbody class="border-0">
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-primary me-2"
+                                  ></i
+                                  >HS-SV
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-warning me-2"
+                                  ></i
+                                  >Thực tập sinh
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-info me-2"
+                                  ></i
+                                  >Mới đi làm
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-danger me-2"
+                                  ></i
+                                  >Quản lý
+                                </h4>
+                              </td>
+                            </tr>
+                            <tr style="display: inline-block">
+                              <td>
+                                <h4 class="text-truncate fs-14 fs-medium mb-0">
+                                  <i
+                                    class="ri-stop-fill align-middle fs-18 text-pink me-2"
+                                  ></i
+                                  >Điều hành
+                                </h4>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
             </div>
+            <!-- end row-->
+
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="card">
+                  <div class="card-header border-0 align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">
+                      Độ tuổi phổ biến
+                    </h4>
+                  </div>
+                  <!-- end card header -->
+
+                  <div class="card-body p-0 pb-2">
+                    <div
+                      id="customer_impression_charts"
+                      data-colors='[ "--vz-primary"]'
+                      class="apex-charts"
+                      dir="ltr"
+                    ></div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+              <div class="col-xl-6">
+                <!-- card -->
+                <div class="card card-height-100">
+                  <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">
+                      Sales by Locations
+                    </h4>
+                    <div class="flex-shrink-0">
+                      <button type="button" class="btn btn-soft-primary btn-sm">
+                        Export Report
+                      </button>
+                    </div>
+                  </div>
+                  <!-- end card header -->
+
+                  <!-- card body -->
+                  <div class="card-body">
+                    <div
+                      id="sales-by-locations"
+                      data-colors='["--vz-light", "--vz-info", "--vz-primary"]'
+                      style="height: 269px"
+                      dir="ltr"
+                    ></div>
+
+                    <div class="px-2 py-2 mt-1"></div>
+                  </div>
+                  <!-- end card body -->
+                </div>
+                <!-- end card -->
+              </div>
+
+              <!-- end col -->
+            </div>
+
+            <div class="row">
+              <div class="col-xl-4">
+                <div class="card card-height-100">
+                  <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Trạng thái</h4>
+                    <div class="flex-shrink-0">
+                      <div class="dropdown card-header-dropdown">
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a class="dropdown-item" href="#">Download Report</a>
+                          <a class="dropdown-item" href="#">Export</a>
+                          <a class="dropdown-item" href="#">Import</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end card header -->
+
+                  <div class="card-body">
+                    <div
+                      id="store-visits-source"
+                      data-colors='["--vz-primary", "--vz-primary-rgb, 0.70", "--vz-primary-rgb, 0.45"]'
+                      class="apex-charts"
+                      dir="ltr"
+                    ></div>
+                  </div>
+                </div>
+                <!-- .card-->
+              </div>
+              <!-- .col-->
+
+              <div class="col-xl-8">
+                <div class="card">
+                  <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">
+                      Các bình luận tiêu biểu
+                    </h4>
+                    <div class="flex-shrink-0"></div>
+                  </div>
+                  <!-- end card header -->
+
+                  <div class="card-body">
+                    <div class="table-responsive table-card overflow">
+                      <table
+                        class="table table-borderless table-centered align-middle table-nowrap mb-0"
+                      >
+                        <thead class="text-muted table-light"></thead>
+                        <tbody>
+                          {% for i in comment_analysis.comment_positive %}
+                          <tr>
+                            <td>{{i}}</td>
+                          </tr>
+                          <!-- end tr -->
+                          {% endfor %}
+                        </tbody>
+                        <!-- end tbody -->
+                      </table>
+                      <!-- end table -->
+                    </div>
+                  </div>
+                </div>
+                <!-- .card-->
+              </div>
+              <!-- .col-->
+            </div>
+            <!-- end row-->
+          </div>
+          <!-- end .h-100-->
         </div>
-        <!-- end main content-->
-{% endblock content %}
+        <!-- end col -->
+      </div>
+    </div>
+    <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+  {% block footer %} {% include "partials/footer.html" %} {% endblock footer %}
 
-{% block extra_js %}
-{% comment %} <script>
-    const ages0 = document.getElementById("ages0").innerText;
-    const ages1 = document.getElementById("ages1").innerText;
-    const ages2 = document.getElementById("ages2").innerText;
-    const ages3 = document.getElementById("ages3").innerText;
-    const ages4 = document.getElementById("ages4").innerText;
-    const ages5 = document.getElementById("ages5").innerText;
-
-    const ctx = document.getElementById("myChart").getContext("2d");
-    const myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: ["13-17", "18-25", "26-34", "35-44", "45-51", "55+"],
-            datasets: [
-                {
-                label: "",
-                data: [ages0, ages1, ages2, ages3, ages4, ages5,0],
-                backgroundColor: [
-                    "#00BFFF",
-                    "#00BFFF",
-                    "#00BFFF",
-                    "#00BFFF",
-                    "#00BFFF",
-                    "#00BFFF",
-                ],
-                borderWidth: 1,
-                },
-            ],
-        },
-    });
-</script> {% endcomment %}
-
-
+  <div style="display: none">
+    {% with report=report_detail %}
+    <div id="ages0">{{report.ages.0.value}}</div>
+    <div id="ages1">{{report.ages.1.value}}</div>
+    <div id="ages2">{{report.ages.2.value}}</div>
+    <div id="ages3">{{report.ages.3.value}}</div>
+    <div id="ages4">{{report.ages.4.value}}</div>
+    <div id="ages5">{{report.ages.5.value}}</div>
+    {% endwith %} {% with Negative=comment_analysis.percent_of_negative %}
+    <div id="Negative">{{Negative}}</div>
+    {% endwith %} {% with Neutral=comment_analysis.percent_of_neutral %}
+    <div id="Neutral">{{Neutral}}</div>
+    {% endwith %} {% with Positive=comment_analysis.percent_of_positive %}
+    <div id="Positive">{{Positive}}</div>
+    {% endwith %}
+  </div>
+</div>
+<!-- end main content-->
+{% endblock content %} {% block extra_js %} {% comment %}
 <script>
+  const ages0 = document.getElementById("ages0").innerText;
+  const ages1 = document.getElementById("ages1").innerText;
+  const ages2 = document.getElementById("ages2").innerText;
+  const ages3 = document.getElementById("ages3").innerText;
+  const ages4 = document.getElementById("ages4").innerText;
+  const ages5 = document.getElementById("ages5").innerText;
 
+  const ctx = document.getElementById("myChart").getContext("2d");
+  const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["13-17", "18-25", "26-34", "35-44", "45-51", "55+"],
+      datasets: [
+        {
+          label: "",
+          data: [ages0, ages1, ages2, ages3, ages4, ages5, 0],
+          backgroundColor: [
+            "#00BFFF",
+            "#00BFFF",
+            "#00BFFF",
+            "#00BFFF",
+            "#00BFFF",
+            "#00BFFF",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+  });
 </script>
+{% endcomment %}
 
+<script></script>
 
 <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 <script src="{% static 'libs/simplebar/simplebar.min.js'%}"></script>
@@ -404,11 +551,8 @@
 <script src="{% static 'js/pages/plugins/lord-icon-2.1.0.js'%}"></script>
 <script src="{% static 'js/plugins.js'%}"></script>
 
-
 <!-- apexcharts -->
 <script src="{% static 'libs/apexcharts/apexcharts.min.js'%}"></script>
-
-
 
 <!-- Vector map-->
 <script src="{% static 'libs/jsvectormap/js/jsvectormap.min.js'%}"></script>
@@ -417,9 +561,10 @@
 <!-- Dashboard init -->
 <script src="{% static 'js/pages/dashboard-analytics.init.js'%}"></script>
 
+<script src="{% static 'js/pages/dashboard-crm.init.js'%}"></script>
+
 <!-- App js -->
 <script src="{% static 'js/app.js'%}"></script>
-
 
 <!-- apexcharts -->
 <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js'%}"></script>
@@ -433,6 +578,5 @@
 
 <!-- Dashboard init -->
 <script src="{% static 'js/pages/dashboard-ecommerce.init.js'%}"></script>
-
 
 {% endblock extra_js %}
