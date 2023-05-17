@@ -14,3 +14,9 @@
 .card-body {
   min-height: 388px;
 }
+.footer {
+    display:none;
+}
+.jvm-tooltip {
+    display:none;
+}
