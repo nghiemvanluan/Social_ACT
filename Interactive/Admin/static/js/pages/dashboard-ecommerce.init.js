@@ -38,7 +38,7 @@ linechartcustomerColors &&
   ((options = {
     series: [
       {
-        name: "Số người",
+        name: "",
         type: "bar",
         data: [ages0, ages1, ages2, ages3, ages4, ages5],
       },

@@ -96,7 +96,7 @@ barchartCountriesColors &&
     dataLabels: {
       enabled: !0,
       offsetX: 32,
-      style: { fontSize: "12px", fontWeight: 400, colors: ["#ffc84b"] },
+      style: { fontSize: "12px", fontWeight: 400, colors: ["#212529"] },
     },
     legend: { show: !1 },
     grid: { show: !1 },
@@ -142,7 +142,7 @@ barchartCountriesColors &&
     dataLabels: {
       enabled: !0,
       offsetX: 32,
-      style: { fontSize: "12px", fontWeight: 400, colors: ["#ffc84b"] },
+      style: { fontSize: "12px", fontWeight: 400, colors: ["#212529"] },
     },
     legend: { show: !1 },
     grid: { show: !1 },

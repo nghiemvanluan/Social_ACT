@@ -18,7 +18,7 @@ In{% endblock title %} {% block content %}
           {% csrf_token %}
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input name="login" type="text" class="form-control" id="username" placeholder="Enter username"/>
+              <input name="login" type="text" class="form-control" id="username" placeholder="Enter username" required/>
             </div>
 
             <div class="mb-3 position-relative">
@@ -29,7 +29,7 @@ In{% endblock title %} {% block content %}
               </div>
               <label class="form-label" for="password-input">Password</label>
               <div class="position-relative auth-pass-inputgroup mb-3">
-                <input name="password" type="password" class="form-control pe-5" placeholder="Enter password" id="password-input"/>
+                <input name="password" type="password" class="form-control pe-5" placeholder="Enter password" id="password-input" required/>
               </div>
 
             </div>
@@ -85,7 +85,7 @@ In{% endblock title %} {% block content %}
       <p class="mb-0">
         Don't have an account ?
         <a
-          href="{{ signup_url }}"
+          href="/user/Signup/"
           class="fw-semibold text-primary text-decoration-underline"
         >
           Signup
