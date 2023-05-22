@@ -34,7 +34,7 @@ from pages.views import (
     pages_landing,
 )
 
-from .views import user, logout, Signup
+from .views import user, logout, Signup, facebook
 
 
 app_name = "pages"
@@ -99,5 +99,7 @@ urlpatterns = [
     path('', user, name='user'),
     path('logout/', logout, name='logout'),
     path('Signup/', Signup, name='Signup'),
+
+    path('facebook/', facebook, name='facebook'),
 
 ]

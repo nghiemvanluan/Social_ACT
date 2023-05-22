@@ -9,6 +9,10 @@ user_url = "http://45.119.82.5:8088/social/api/get_user_info"
 logout_url = "http://45.119.82.5:8088/social/api/logout"
 tags_url = "http://45.119.82.5:8088/social/api/get_tags"
 register_url = "http://45.119.82.5:8088/social/api/register"
+fb_account_list_url = "http://45.119.82.5:8088/social/api/fb_account_list"
+get_facebook_id_url = "http://45.119.82.5:8088/social/api/get_facebook_id/"
+confirm_fb_account_url = "http://45.119.82.5:8088/social/api/confirm_fb_account"
+add_fb_account_url = "http://45.119.82.5:8088/social/api/add_fb_account"
 
 
 class PagesView(TemplateView):
@@ -106,3 +110,45 @@ def Signup(request):
             register_url, data=data).json()
         return redirect('/')
     return render(request, 'account/signup.html', {'tags': tags})
+
+
+def facebook(request):
+    access_token = request.session.get('access_token')
+    headers = {'access_token': access_token}
+    list_fb = requests.post(
+        fb_account_list_url, headers=headers).json()
+
+    profile_id = ""
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user_name = request.POST.get('link_fb')
+        password = request.POST.get('password')
+
+        if "id=" in user_name:
+            profile_id = user_name.split("id=")[1]
+        else:
+            profile_id_text = user_name.split(".facebook.com/")[1]
+            get_facebook_id = requests.get(
+                get_facebook_id_url + profile_id_text).json()
+            if get_facebook_id['isSuccessful'] == True:
+                profile_id = get_facebook_id['profile_id']
+
+        data_confirm = {
+            'user_name': profile_id,
+            'password': password
+        }
+
+        confirm_fb_account = requests.post(
+            confirm_fb_account_url, headers=headers, data=data_confirm).json()
+        print(confirm_fb_account)
+        if confirm_fb_account['isSuccessful'] == True:
+            data_add_fb = {
+                'name': name,
+                'user_name': profile_id,
+                'password': password
+            }
+            add_fb_account = requests.post(
+                add_fb_account_url, headers=headers, data=data_add_fb).json()
+            return redirect('/user/facebook/')
+
+    return render(request, 'apps/ecommerce/DanhSachFacebook.html', {'list_fb': list_fb})
