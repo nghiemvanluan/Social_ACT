@@ -21,31 +21,20 @@
               <div class="row g-4 align-items-center">
                 <div class="col-sm">
                   <div>
-                    <h5 class="card-title mb-0">Nguồn</h5>
+                    <h5 class="card-title mb-0">Tài khoản FaceBook</h5>
                   </div>
                 </div>
                 <div class="col-sm-auto">
                   <div>
                     <button
                       type="button"
-                      class="btn btn-info add-btn"
+                      class="btn btn-success add-btn"
                       data-bs-toggle="modal"
                       id="create-btn"
                       data-bs-target="#showModal"
                     >
-                      <i class="ri-add-line align-bottom me-1"></i> Thêm nguồn
-                      mặc định
-                    </button>
-
-                    <button
-                      type="button"
-                      class="btn btn-success add-btn"
-                      data-bs-toggle="modal"
-                      id="create-btn-tc"
-                      data-bs-target="#showModalTC"
-                    >
-                      <i class="ri-add-line align-bottom me-1"></i> Thêm nguồn
-                      tùy chỉnh
+                      <i class="ri-add-line align-bottom me-1"></i> Thêm tài
+                      khoản
                     </button>
                   </div>
                 </div>
@@ -57,71 +46,15 @@
                   <table class="table align-middle" id="customerTable">
                     <thead class="table-light text-muted">
                       <tr>
-                        <th class="sort" data-sort="id">#</th>
-                        <th class="sort" data-sort="Name_Source">
-                          Name Source
-                        </th>
-                        <th class="sort" data-sort="Link_Id">Link Id</th>
-                        <th class="sort" data-sort="Group">Group</th>
-                        <th class="sort" data-sort="Type">Type</th>
-                        <th class="sort" data-sort="Status">Status</th>
-                        <th class="sort" data-sort="action">Action</th>
+                        <th class="sort" data-sort="id">Id</th>
+                        <th class="sort" data-sort="Name">Name</th>
                       </tr>
                     </thead>
                     <tbody class="list form-check-all">
-                      {% for i in track_list %}
+                      {% for i in list_fb %}
                       <tr>
                         <td class="id">{{i.id}}</td>
                         <td class="name">{{i.name}}</td>
-                        <td class="keyword">{{i.keyword}}</td>
-                        <td class="tag_id">{{i.tag_id.1}}</td>
-                        <td class="source_id">{{i.source_id.1}}</td>
-                        {% if i.status == False %}
-                        <td class="status">
-                          <span class="badge badge-soft-danger text-uppercase"
-                            >Passive</span
-                          >
-                        </td>
-                        {% else %}
-                        <td class="status">
-                          <span class="badge badge-soft-success text-uppercase"
-                            >Active</span
-                          >
-                        </td>
-
-                        {% endif %}
-                        <td>
-                          <ul class="list-inline hstack gap-2 mb-0">
-                            <li
-                              class="list-inline-item edit"
-                              data-bs-toggle="tooltip"
-                              data-bs-trigger="hover"
-                              data-bs-placement="top"
-                              title="Thay đổi trạng thái"
-                            >
-                              <a
-                                href="{% url 'apps:status_c' i.id i.status %}"
-                                class="text-primary d-inline-block edit-item-btn"
-                              >
-                                <i class="ri-pencil-fill fs-16"></i>
-                              </a>
-                            </li>
-                            <li
-                              class="list-inline-item"
-                              data-bs-toggle="tooltip"
-                              data-bs-trigger="hover"
-                              data-bs-placement="top"
-                              title="Xóa"
-                            >
-                              <a
-                                class="text-danger d-inline-block remove-item-btn"
-                                onClick="xoa_nguon({{i.id}})"
-                              >
-                                <i class="ri-delete-bin-5-fill fs-16"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </td>
                       </tr>
                       {% endfor %}
                     </tbody>
@@ -169,169 +102,34 @@
 
                         <div class="mb-3">
                           <label for="customername-field" class="form-label"
-                            >Tên Nguồn</label
+                            >Name</label
                           >
-                          <span>
-                            <select
-                              name="source_id"
-                              class="form-select"
-                              aria-label="Default select example"
-                              {%
-                              ifchanged
-                              source_id
-                              %}
-                              onchange="getListSuggest()"
-                              {%
-                              endifchanged
-                              %}
-                            >
-                              {% for i in response %}
-                              <option value="{{i.id}}">{{i.name}}</option>
-                              {% endfor %}
-                            </select>
-                          </span>
+                          <input class="form-control" name="name" required />
                         </div>
 
                         <div class="mb-3">
                           <label for="email-field" class="form-label"
-                            >Ngành</label
+                            >Link tài khoản</label
                           >
-                          <span>
-                            <select
-                              name="tag_id"
-                              class="form-select"
-                              aria-label="Default select example"
-                              {%
-                              ifchanged
-                              tag_id
-                              %}
-                              onchange="getListSuggest()"
-                              {%
-                              endifchanged
-                              %}
-                            >
-                              {% for i in tag %}
-                              <option value="{{i.id}}">{{i.name}}</option>
-                              {% endfor %}
-                            </select>
-                          </span>
+                          <input
+                            class="form-control"
+                            name="link_fb"
+                            pattern="(?:https)?(?:www\.)?facebook\.com\/(?:[A-Za-z0-9_\-]+\/?)*?id=[0-9]+)?"
+                            required
+                          />
                         </div>
 
                         <div class="mb-3">
                           <label for="phone-field" class="form-label"
-                            >Nguồn</label
+                            >Mật khẩu</label
                           >
-                          <span id="span_listSuggest">
-                            <select
-                              name="keyword"
-                              class="form-select"
-                              aria-label="Default select example"
-                              id="listSuggest"
-                            >
-                              {% for i in list_suggest %}
-                              <option value="{{i.id_group}}:{{i.name}}">
-                                {{i.name}}
-                              </option>
-                              {% endfor %}
-                            </select>
-                          </span>
-                        </div>
-
-                        <div>
-                          <label for="status-field" class="form-label"
-                            >Lắng nghe nguồn này</label
-                          >
-                          <span style="margin-left: 1%">
-                            <label class="switch">
-                              <input name="status" type="checkbox" checked />
-                              <span class="slider round"></span>
-                            </label>
-                          </span>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <div class="hstack gap-2 justify-content-end">
-                          <button
-                            type="button"
-                            class="btn btn-light"
-                            data-bs-dismiss="modal"
-                          >
-                            Close
-                          </button>
-                          <button
-                            type="submit"
-                            class="btn btn-success"
-                            id="add-btn"
-                          >
-                            Add Customer
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="modal fade"
-                id="showModalTC"
-                tabindex="-1"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header bg-light p-3">
-                      <h5 class="modal-title" id="exampleModalLabel"></h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        id="close-modal"
-                      ></button>
-                    </div>
-                    <form action="#" method="post">
-                      {% csrf_token %}
-                      <div class="modal-body">
-                        <input type="hidden" id="id-field" />
-
-                        <div class="mb-3">
-                          <label for="customername-field" class="form-label"
-                            >Tên nguồn</label
-                          >
-                          <span>
-                            <input name="name" class="form-control" />
-                          </span>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="customername-field" class="form-label"
-                            >ID Group</label
-                          >
-                          <span>
-                            <input name="keyword" class="form-control" />
-                          </span>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="customername-field" class="form-label"
-                            >ID tài khoản</label
-                          >
-                          <span>
-                            <input name="account_id" class="form-control" />
-                          </span>
-                        </div>
-
-                        <div>
-                          <label for="status-field" class="form-label"
-                            >Lắng nghe nguồn này</label
-                          >
-                          <span style="margin-left: 1%">
-                            <label class="switch">
-                              <input name="status" type="checkbox" checked />
-                              <span class="slider round"></span>
-                            </label>
-                          </span>
+                          <input
+                            id="password1"
+                            class="form-control"
+                            name="password"
+                            type="password"
+                            required
+                          />
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -430,6 +228,7 @@
   </div>
   <!-- End Page-content -->
   {% endblock content %} {% block extra_js %}
+
   <script>
     var id_NgXoa = -1;
     function xoa_nguon(id) {

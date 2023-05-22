@@ -45,7 +45,7 @@ linechartcustomerColors &&
     ],
     chart: { height: 370, type: "line", toolbar: { show: !1 } },
     stroke: { curve: "straight", dashArray: [0, 0, 8], width: [2, 0, 2.2] },
-    fill: { opacity: [0.1, 0.9, 1] },
+    fill: { opacity: [0.8, 0.8, 0.8] },
     markers: { size: [0, 0, 0], strokeWidth: 2, hover: { size: 4 } },
     xaxis: {
       categories: ["13-17", "18-25", "26-34", "35-44", "45-51", "55+"],

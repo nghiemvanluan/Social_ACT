@@ -192,7 +192,8 @@
   </div>
   <!-- End Page-content -->
 
-  {% block footer %} {% include "partials/footer.html" %} {% endblock footer %}
+  {% comment %} {% block footer %} {% include "partials/footer.html" %} {%
+  endblock footer %} {% endcomment %}
 </div>
 <!-- end main content-->
 {% endblock content %} {% block extra_js %}
@@ -205,7 +206,6 @@
     document.getElementById("deleteRecordModalCC").style.opacity = 1;
     id_NgXoa = id;
   }
-
 
   function Close() {
     document.getElementById("deleteRecordModal").style.display = "none";

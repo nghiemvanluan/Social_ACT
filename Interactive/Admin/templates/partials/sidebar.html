@@ -35,7 +35,63 @@
       <div id="two-column-menu"></div>
       <ul class="navbar-nav" id="navbar-nav">
         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-          <li class="nav-item">
+
+        <li class="nav-item">
+          <a
+            class="nav-link menu-link"
+            href="/dashboards/"
+            role="button"
+            aria-expanded="false"
+            aria-controls="sidebarDashboards"
+          >
+            <i class="ri-dashboard-2-line"></i>
+            <span data-key="t-dashboards" class="text-dark">Dashboards</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link menu-link"
+            href="/source-clients/"
+            role="button"
+            aria-expanded="false"
+            aria-controls="sidebarDashboards"
+          >
+            <i class="la la-empire"></i>
+            <span data-key="t-dashboards" class="text-dark">Nguồn</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link menu-link"
+            href="/source-clients/clients"
+            role="button"
+            aria-expanded="false"
+            aria-controls="sidebarDashboards"
+          >
+            <i class="la la-users"></i>
+            <span data-key="t-dashboards" class="text-dark"
+              >Khách tiềm năng</span
+            >
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link menu-link"
+            href="/source-clients/list_customers"
+            role="button"
+            aria-expanded="false"
+            aria-controls="sidebarDashboards"
+          >
+            <i class="la la-thumb-tack"></i>
+            <span data-key="t-dashboards" class="text-dark">Danh sách lưu</span>
+          </a>
+        </li>
+
+        {% comment %}
+        <li class="nav-item">
           <a
             class="nav-link menu-link"
             href="#"
@@ -47,30 +103,6 @@
             <span data-key="t-dashboards" class="text-dark">Điểm tin</span>
           </a>
         </li>
-        {% comment %} <li class="nav-item">
-          <a
-            class="nav-link menu-link"
-            href="/dashboards/"
-            role="button"
-            aria-expanded="false"
-            aria-controls="sidebarDashboards"
-          >
-            <i class="ri-dashboard-2-line"></i>
-            <span data-key="t-dashboards">Dashboards</span>
-          </a>
-        </li> {% endcomment %}
-        <!-- end Dashboard Menu -->
-        {% comment %} <li class="nav-item">
-          <a
-            class="nav-link menu-link"
-            href="/source-clients/"
-            role="button"
-            aria-expanded="false"
-            aria-controls="sidebarApps"
-          >
-            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Nguồn</span>
-          </a>
-        </li> {% endcomment %}
 
         <li class="nav-item">
           <a
@@ -87,10 +119,7 @@
           <div class="collapse menu-dropdown" id="sidebarLayouts">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                <a
-                  href="/dashboards/"
-                  class="nav-link"
-                  data-key="t-horizontal"
+                <a href="/dashboards/" class="nav-link" data-key="t-horizontal"
                   >Dashboards</a
                 >
               </li>
@@ -121,7 +150,6 @@
             </ul>
           </div>
         </li>
-        <!-- end Dashboard Menu -->
 
         <li class="nav-item">
           <a
@@ -199,13 +227,15 @@
             aria-expanded="false"
             aria-controls="sidebarPages"
           >
-          <i class="ri-rocket-line"></i>
-             <span data-key="t-pages" class="text-dark">Chiến dịch</span>
+            <i class="ri-rocket-line"></i>
+            <span data-key="t-pages" class="text-dark">Chiến dịch</span>
           </a>
           <div class="collapse menu-dropdown" id="sidebarPages">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                <a href="#" class="nav-link" data-key="t-starter">Tạo chiến dịch</a>
+                <a href="#" class="nav-link" data-key="t-starter"
+                  >Tạo chiến dịch</a
+                >
               </li>
               <li class="nav-item">
                 <a
@@ -227,12 +257,35 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link menu-link" target="_blank" href="#">
-            
+          <a
+            class="nav-link menu-link"
+            target="_blank"
+            data-bs-toggle="collapse"
+          >
             <i class="ri-account-circle-line"></i>
-            <span data-key="t-landing" class="text-dark">Thiết lập tài khoản</span>
+            <span data-key="t-landing" class="text-dark"
+              >Thiết lập tài khoản</span
+            >
           </a>
+
+          <div class="collapse menu-dropdown" id="sidebarAuth">
+            <ul class="nav nav-sm flex-column">
+              <li class="nav-item">
+                <a
+                  href="/user/facebook/"
+                  class="nav-link"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="sidebarSignIn"
+                  data-key="t-signin"
+                >
+                  Tài khoản FaceBook
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
+        {% endcomment %}
       </ul>
     </div>
     <!-- Sidebar -->

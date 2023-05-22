@@ -371,7 +371,7 @@ Dashboard{% endblock title %} {% block extra_css %}
                   <div class="card-body p-0 pb-2">
                     <div
                       id="customer_impression_charts"
-                      data-colors='[ "--vz-primary"]'
+                      data-colors='["--vz-primary"]'
                       class="apex-charts"
                       dir="ltr"
                     ></div>
@@ -489,7 +489,8 @@ Dashboard{% endblock title %} {% block extra_css %}
     <!-- container-fluid -->
   </div>
   <!-- End Page-content -->
-  {% block footer %} {% include "partials/footer.html" %} {% endblock footer %}
+  {% comment %} {% block footer %} {% include "partials/footer.html" %} {%
+  endblock footer %} {% endcomment %}
 
   <div style="display: none">
     {% with report=report_detail %}
