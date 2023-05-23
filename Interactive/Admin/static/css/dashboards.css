@@ -15,7 +15,7 @@
   min-height: 388px;
 }
 .footer {
-    display:none;
+    display:none !important;
 }
 .jvm-tooltip {
     display:none;
