@@ -304,3 +304,19 @@ def typical_comment(request, search):
     print(search)
 
     return render(request, '/source-clients/list_customers/')
+
+
+def post_all(request):
+    return render(request, 'apps/projects/apps-projects-list.html')
+
+
+def post_new(request):
+    return render(request, 'apps/projects/apps-projects-create.html')
+
+
+def campaign_new(request):
+    return render(request, 'apps/projects/apps-projects-campaign.html')
+
+
+def campaign_manage(request):
+    return render(request, 'apps/projects/apps-projects-campaign-manage.html')

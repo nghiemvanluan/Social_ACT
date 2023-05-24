@@ -35,7 +35,7 @@ from apps.views import (
     apps_tickets_list_view,
     apps_tickets_details_view
 )
-from .views import source, status_c, delete_source, sourceJs, clients, list_customer, detail_customer, delete_customer, typical_comment
+from .views import source, status_c, delete_source, sourceJs, clients, list_customer, detail_customer, delete_customer, typical_comment, post_all, post_new, campaign_new, campaign_manage
 app_name = "apps"
 
 urlpatterns = [
@@ -111,6 +111,21 @@ urlpatterns = [
 
     path('typical_comment/<search>/',
          typical_comment, name='typical_comment'),
+
+    # bài đăng
+
+    path('post_all/',
+         post_all, name='post_all'),
+
+
+    path('post_new/',
+         post_new, name='post_new'),
+
+    path('campaign_new/',
+         campaign_new, name='campaign_new'),
+
+    path('campaign_manage/',
+         campaign_manage, name='campaign_manage'),
 
 
 ]

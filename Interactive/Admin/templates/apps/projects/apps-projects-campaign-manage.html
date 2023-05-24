@@ -13,95 +13,19 @@
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
                             <div>
-                                <a href="/source-clients/post_new/" class="btn btn-success"><i
-                                        class="ri-add-line align-bottom me-1"></i> Add New</a>
+                                <a href="#" class="btn btn-success" onclick="btn_new()"><i
+                                        class="ri-add-line align-bottom me-1"></i> Mới</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-3 project-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column h-100">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted mb-4">Updated 3hrs ago</p>
-                                            </div>
-                                            <div class="flex-shrink-0">
-                                                <div class="d-flex gap-1 align-items-center">
-                                                    <button type="button" class="btn avatar-xs mt-n1 p-0 favourite-btn">
-                                                        <span class="avatar-title bg-transparent fs-15">
-                                                            <i class="ri-star-fill"></i>
-                                                        </span>
-                                                    </button>
-                                                    <div class="dropdown">
-                                                        <button
-                                                            class="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="true">
-                                                            <i data-feather="more-horizontal" class="icon-sm"></i>
-                                                        </button>
-
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{% url 'apps:projects.overview' %}"><i
-                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                                View</a>
-                                                            <a class="dropdown-item" href="{% url 'apps:projects.create' %}"><i
-                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                                Edit</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#removeProjectModal"><i
-                                                                    class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                                Remove</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar-sm">
-                                                    <span class="avatar-title bg-soft-warning rounded p-2">
-                                                        <img src="{% static 'images/brands/slack.png' %}" alt=""
-                                                            class="img-fluid p-1">
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 class="mb-1 fs-16"><a href="{% url 'apps:projects.overview' %}"
-                                                        class="text-dark">Slack brand logo design</a></h5>
-                                                <p class="text-muted text-truncate-two-lines mb-3">Create a Brand logo
-                                                    design for a velzon admin.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="d-flex mb-2">
-                                                <div class="flex-grow-1">
-                                                    <div>Tasks</div>
-                                                </div>
-                                                <div class="flex-shrink-0">
-                                                    <div><i class="ri-list-check align-bottom me-1 text-muted"></i>
-                                                        18/42</div>
-                                                </div>
-                                            </div>
-                                            <div class="progress progress-sm animated-progress">
-                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                    aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 34%;">
-                                                </div><!-- /.progress-bar -->
-                                            </div><!-- /.progress -->
-                                        </div>
-                                    </div>
-
-                                </div>
+                            <div class="mb-3">
+                                <h5>Đang chạy</h5>
                             </div>
-                            <!-- end card -->
-                        </div>
-                        <div class="col-sm-3 project-card">
-                            <div class="card">
+                            <div id="new-campaign">
+                            <div class="card" style="display: none;" id="campaign_new">
                                 <div class="card-body">
                                     <div class="d-flex flex-column h-100">
                                         <div class="d-flex">
@@ -177,90 +101,44 @@
                                     </div>
 
                                 </div>
+                                <!-- end card body -->
+                                <div class="card-footer bg-transparent border-top-dashed py-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <div class="avatar-group">
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Darline Williams">
+                                                    <div class="avatar-xxs">
+                                                        <img src="{% static 'images/users/avatar-2.jpg' %}" alt=""
+                                                            class="rounded-circle img-fluid">
+                                                    </div>
+                                                </a>
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Add Members">
+                                                    <div class="avatar-xxs">
+                                                        <div
+                                                            class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                            +
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="text-muted">
+                                                <i class=" ri-delete-bin-5-line" onclick = "xoa()"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- end card footer -->
                             </div>
-                            <!-- end card -->
-                        </div>
-                        <div class="col-sm-3 project-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column h-100">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted mb-4">Updated 3hrs ago</p>
-                                            </div>
-                                            <div class="flex-shrink-0">
-                                                <div class="d-flex gap-1 align-items-center">
-                                                    <button type="button" class="btn avatar-xs mt-n1 p-0 favourite-btn">
-                                                        <span class="avatar-title bg-transparent fs-15">
-                                                            <i class="ri-star-fill"></i>
-                                                        </span>
-                                                    </button>
-                                                    <div class="dropdown">
-                                                        <button
-                                                            class="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="true">
-                                                            <i data-feather="more-horizontal" class="icon-sm"></i>
-                                                        </button>
 
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{% url 'apps:projects.overview' %}"><i
-                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                                View</a>
-                                                            <a class="dropdown-item" href="{% url 'apps:projects.create' %}"><i
-                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                                Edit</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#removeProjectModal"><i
-                                                                    class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                                Remove</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar-sm">
-                                                    <span class="avatar-title bg-soft-warning rounded p-2">
-                                                        <img src="{% static 'images/brands/slack.png' %}" alt=""
-                                                            class="img-fluid p-1">
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 class="mb-1 fs-16"><a href="{% url 'apps:projects.overview' %}"
-                                                        class="text-dark">Slack brand logo design</a></h5>
-                                                <p class="text-muted text-truncate-two-lines mb-3">Create a Brand logo
-                                                    design for a velzon admin.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="d-flex mb-2">
-                                                <div class="flex-grow-1">
-                                                    <div>Tasks</div>
-                                                </div>
-                                                <div class="flex-shrink-0">
-                                                    <div><i class="ri-list-check align-bottom me-1 text-muted"></i>
-                                                        18/42</div>
-                                                </div>
-                                            </div>
-                                            <div class="progress progress-sm animated-progress">
-                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                    aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 34%;">
-                                                </div><!-- /.progress-bar -->
-                                            </div><!-- /.progress -->
-                                        </div>
-                                    </div>
-
-                                </div>
                             </div>
-                            <!-- end card -->
-                        </div>
-                        <div class="col-sm-3 project-card">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column h-100">
@@ -337,11 +215,292 @@
                                     </div>
 
                                 </div>
+                                <!-- end card body -->
+                                <div class="card-footer bg-transparent border-top-dashed py-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <div class="avatar-group">
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Darline Williams">
+                                                    <div class="avatar-xxs">
+                                                        <img src="{% static 'images/users/avatar-2.jpg' %}" alt=""
+                                                            class="rounded-circle img-fluid">
+                                                    </div>
+                                                </a>
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Add Members">
+                                                    <div class="avatar-xxs">
+                                                        <div
+                                                            class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                            +
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="text-muted">
+                                                <i class="ri-calendar-event-fill me-1 align-bottom"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- end card footer -->
                             </div>
                             <!-- end card -->
                         </div>
                         <!-- end col -->
+
+                        <div class="col-sm-3 project-card">
+                            <div class="mb-3">
+                                <h5>Tháng này</h5>
+                            </div>
+                            {% comment %} <div class="card card-height-100">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted mb-4">Updated 3hrs ago</p>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <div class="d-flex gap-1 align-items-center">
+                                                    <button type="button" class="btn avatar-xs mt-n1 p-0 favourite-btn">
+                                                        <span class="avatar-title bg-transparent fs-15">
+                                                            <i class="ri-star-fill"></i>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown">
+                                                        <button
+                                                            class="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="true">
+                                                            <i data-feather="more-horizontal" class="icon-sm"></i>
+                                                        </button>
+
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'apps:projects.overview' %}"><i
+                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                                View</a>
+                                                            <a class="dropdown-item" href="{% url 'apps:projects.create' %}"><i
+                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                                Edit</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#removeProjectModal"><i
+                                                                    class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                Remove</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm">
+                                                    <span class="avatar-title bg-soft-warning rounded p-2">
+                                                        <img src="{% static 'images/brands/slack.png' %}" alt=""
+                                                            class="img-fluid p-1">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="mb-1 fs-16"><a href="{% url 'apps:projects.overview' %}"
+                                                        class="text-dark">Slack brand logo design</a></h5>
+                                                <p class="text-muted text-truncate-two-lines mb-3">Create a Brand logo
+                                                    design for a velzon admin.</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-auto">
+                                            <div class="d-flex mb-2">
+                                                <div class="flex-grow-1">
+                                                    <div>Tasks</div>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div><i class="ri-list-check align-bottom me-1 text-muted"></i>
+                                                        18/42</div>
+                                                </div>
+                                            </div>
+                                            <div class="progress progress-sm animated-progress">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 34%;">
+                                                </div><!-- /.progress-bar -->
+                                            </div><!-- /.progress -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end card body -->
+                                <div class="card-footer bg-transparent border-top-dashed py-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <div class="avatar-group">
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Darline Williams">
+                                                    <div class="avatar-xxs">
+                                                        <img src="{% static 'images/users/avatar-2.jpg' %}" alt=""
+                                                            class="rounded-circle img-fluid">
+                                                    </div>
+                                                </a>
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Add Members">
+                                                    <div class="avatar-xxs">
+                                                        <div
+                                                            class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                            +
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="text-muted">
+                                                <i class="ri-calendar-event-fill me-1 align-bottom"></i> 10 Jul, 2021
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- end card footer -->
+                            </div> {% endcomment %}
+                        </div>
+
+
+                        <div class="col-sm-3 project-card">
+                            <div class="mb-3">
+                                <h5>Tuần này</h5>
+                            </div>
+                            {% comment %} <div class="card card-height-100">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted mb-4">Updated 3hrs ago</p>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <div class="d-flex gap-1 align-items-center">
+                                                    <button type="button" class="btn avatar-xs mt-n1 p-0 favourite-btn">
+                                                        <span class="avatar-title bg-transparent fs-15">
+                                                            <i class="ri-star-fill"></i>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown">
+                                                        <button
+                                                            class="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="true">
+                                                            <i data-feather="more-horizontal" class="icon-sm"></i>
+                                                        </button>
+
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'apps:projects.overview' %}"><i
+                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                                View</a>
+                                                            <a class="dropdown-item" href="{% url 'apps:projects.create' %}"><i
+                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                                Edit</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#removeProjectModal"><i
+                                                                    class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                Remove</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm">
+                                                    <span class="avatar-title bg-soft-warning rounded p-2">
+                                                        <img src="{% static 'images/brands/slack.png' %}" alt=""
+                                                            class="img-fluid p-1">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="mb-1 fs-16"><a href="{% url 'apps:projects.overview' %}"
+                                                        class="text-dark">Slack brand logo design</a></h5>
+                                                <p class="text-muted text-truncate-two-lines mb-3">Create a Brand logo
+                                                    design for a velzon admin.</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-auto">
+                                            <div class="d-flex mb-2">
+                                                <div class="flex-grow-1">
+                                                    <div>Tasks</div>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div><i class="ri-list-check align-bottom me-1 text-muted"></i>
+                                                        18/42</div>
+                                                </div>
+                                            </div>
+                                            <div class="progress progress-sm animated-progress">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 34%;">
+                                                </div><!-- /.progress-bar -->
+                                            </div><!-- /.progress -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end card body -->
+                                <div class="card-footer bg-transparent border-top-dashed py-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <div class="avatar-group">
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Darline Williams">
+                                                    <div class="avatar-xxs">
+                                                        <img src="{% static 'images/users/avatar-2.jpg' %}" alt=""
+                                                            class="rounded-circle img-fluid">
+                                                    </div>
+                                                </a>
+                                                <a href="javascript: void(0);" class="avatar-group-item"
+                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                    data-bs-placement="top" title="Add Members">
+                                                    <div class="avatar-xxs">
+                                                        <div
+                                                            class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                            +
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="text-muted">
+                                                <i class="ri-calendar-event-fill me-1 align-bottom"></i> 10 Jul, 2021
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- end card footer -->
+                            </div> {% endcomment %}
+                        </div>
+
+                        <div class="col-sm-3 project-card">
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-secondary btn-sm w-100">+ Giai đoạn</button>
+                            </div>
+
+                        </div>
                     </div>
+
+                    
                     <!-- end row -->
                 </div>
                 <!-- container-fluid -->
@@ -352,7 +511,7 @@
         {% include "partials/footer.html" %}
         {% endblock footer %} {% endcomment %}
         </div>
-
+        <!-- end main content-->
 {% endblock content %}
 
 {% block extra_content %}
@@ -383,6 +542,20 @@
 {% endblock extra_content %}
 {% block extra_js %}
     <!-- project list init -->
+    <script>
+        const btn_new = ()=>{
+            
+            const newCampaign = document.getElementById("campaign_new")
+            newCampaign.style.display = "inline-block"
+        }
+
+        const xoa=()=>{
+            const newCampaign = document.getElementById("campaign_new")
+            newCampaign.style.display = "none"
+        }
+    </script>
+
+
     <script src="{% static 'js/pages/project-list.init.js'%}"></script>
 
     <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
